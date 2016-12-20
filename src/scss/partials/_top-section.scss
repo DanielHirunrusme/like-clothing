@@ -1,0 +1,13 @@
+#top-section {
+	@include flexbox;
+	@include flex-direction(column);
+	@include justify-content(space-between);
+	
+	height:100%;
+	min-height:800px;
+	text-align:center;
+	
+	#newsletter {
+		
+	}
+}

@@ -19,7 +19,8 @@
   "homepage": "",
   "dependencies": {
     "barba.js": "^0.0.10",
-	"fastclick": "^1.0.6"
+    "fastclick": "^1.0.6",
+    "jquery": "^3.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.4",
@@ -49,6 +50,6 @@
     "watchify": "^3.7.0"
   },
   "browserify-shim": {
-  	"fastclick": "FastClick"
+    "fastclick": "FastClick"
   }
 }

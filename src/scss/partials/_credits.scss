@@ -1,0 +1,30 @@
+#credits {
+	
+	ul {
+		//@include flexbox;
+		//@include flex-direction(column);
+		
+		width:100%;
+		
+		li {
+			@include flexbox;
+			@include flex-direction(row);
+			@include justify-content(space-between);
+			//width:50%;
+			
+			h4, h5 {
+				display:inline-block;
+				width:48%;
+			}
+			
+			h4 {
+				text-align:right;
+			}
+			
+			h5 {
+				text-align:left;
+			}
+		}
+	}
+	
+}

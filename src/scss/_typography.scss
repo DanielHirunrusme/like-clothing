@@ -1,9 +1,9 @@
 %globalText {
 	
-	font-family:'Unica-Regular', Helvetica, Arial, sans-serif;
+	font-family:Helvetica, Arial, sans-serif;
 	@include font-size($body-font-sizes); 
 	@include line-height($body-line-height); 
-	color:$c-orange;
+	color:$c-white;
 	//letter-spacing: -.005em !important;
 }
 
@@ -49,7 +49,9 @@ h1, h2, h3, h4, h5, h6, a, nav, button {
 	//text-transform:uppercase;
 }
 
-
+p {
+	text-align:left;
+}
 
 span, time, a {
 	word-spacing:initial;
@@ -57,11 +59,11 @@ span, time, a {
 
 a {
 	text-decoration:none;
-	color:$c-orange;
+	//color:$c-orange;
 	
 	
 	&:hover {
-		color:$c-orange;
+		//color:$c-orange;
 	}
 } 
 
@@ -130,8 +132,7 @@ p:hover {
 /* FORM STYLING */
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder  {
-   color: $c-orange;
-   @include opacity(.4);
+   color: $c-white;
 }
 
 input:-moz-placeholder {
@@ -147,77 +148,8 @@ input:-ms-input-placeholder {
 }
 
 input {
-	line-height:60px;
-}
-
-input[type="checkbox"], .radio-custom {
-    opacity: 0;
-    position: absolute;   
-}
-
-input[type="checkbox"], .radio-custom, .radio-custom-label {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 5px;
-    cursor: pointer;
-}
-
-input[type="checkbox"], .radio-custom-label {
-    position: relative;
-}
-
-input[type="checkbox"] + label:before, .radio-custom + .radio-custom-label:before {
-    content: '';
-    background: #fff;
-    border: 1px solid $c-orange;
-    display: inline-block;
-    vertical-align: middle;
-    width:12px;
-    height:12px;
-	margin-left: 14px;
-    margin-top: -.15em;
-    margin-right: 12px;
-    text-align: center;
-	
-	cursor:copy;
-	
-	@include respond-to(desktop) {
-	    width: 16px;
-	    height: 16px;
-	    margin-left: 24px;
-	    margin-top: -0.2em;
-	    margin-right: 20px;
-	    text-align: center;
-	}
-}
-
-input[type="checkbox"]:checked + label:before, input[type="checkbox"]:hover + label:before {
-    background: $c-black;
-}
-
-input[type="checkbox"]:focus + label, .radio-custom:focus + .radio-custom-label {
-  //outline: 1px solid #ddd; /* focus style */
-  
-}
-
-input[type="submit"] {
-	/*
-	background:$c-white;
-	margin-top:$g-unit*1;
-	border:1px solid $c-orange !important;
-	
-	color:$c-orange;
-	text-align:center;
-	*/
-	background:$c-orange;
-	color:$c-white;
-	
-	line-height:58px;
-	
-	&:hover {
-		background:$c-orange;
-		color:$c-white;
-	}
+	background:transparent;
+	border:1px solid $c-white;
 }
 
 
