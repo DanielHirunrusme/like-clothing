@@ -3,26 +3,39 @@
 	ul {
 		//@include flexbox;
 		//@include flex-direction(column);
-		
+		margin:0;
+		padding:0;
+		margin-top:5vw;
 		width:100%;
+		display:table;
 		
 		li {
-			@include flexbox;
-			@include flex-direction(row);
-			@include justify-content(space-between);
+			display:inline-table;
+			//@include flexbox;
+			//@include flex-direction(row);
+			//@include justify-content(space-between);
 			//width:50%;
+			clear:left;
+			width:100%;
+			margin-top:1vw;
+			vertical-align:bottom;
 			
 			h4, h5 {
+				vertical-align:bottom;
 				display:inline-block;
 				width:48%;
+				
 			}
 			
 			h4 {
 				text-align:right;
+				line-height:1.85;
+				margin-right:1%;
 			}
 			
 			h5 {
 				text-align:left;
+				margin-left:1%;
 			}
 		}
 	}

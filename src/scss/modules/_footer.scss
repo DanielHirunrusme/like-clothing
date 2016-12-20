@@ -1,6 +1,12 @@
 footer {
-	margin:5vw 0 2vw 0;
+	margin:5vw 0 5vw 0;
+	text-align:center;
 	
+	* {
+		font-family:'NeueHaasGroteskDisp_Pro';
+		@include font-size($p-font-sizes); 
+		@include line-height($p-line-height); 
+	}
 	ul {
 		text-align:center;
 		
@@ -8,6 +14,26 @@ footer {
 			display:inline-block;
 			a {
 				color:$c-white;
+			}
+		}
+	}
+	
+	.copyright {
+		@include flexbox;
+		@include justify-content(center);
+		@include align-content(center);
+		@include align-items(flex-end);
+		margin:5vw auto;
+		
+		text-align:center;
+		@include font-size($p-font-sizes); 
+		@include line-height($p-line-height); 
+		
+		a {
+			margin-left:.5vw;
+			
+			&:first-of-type {
+				margin-left:2.5vw;
 			}
 		}
 	}

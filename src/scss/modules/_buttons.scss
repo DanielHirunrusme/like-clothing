@@ -6,8 +6,17 @@ button:focus, button:active, button:hover {
 	border-radius:0;
 }
 
+button {
+	font-family:'NeueHaasGroteskDisp_Pro';
+}
+
 .button--mute {
 	position:fixed;
 	top:0;
 	right:0;
+}
+
+.button--submit {
+	border:1px solid $c-white;
+	padding:0 .5em;
 }

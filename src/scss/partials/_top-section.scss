@@ -7,7 +7,38 @@
 	min-height:800px;
 	text-align:center;
 	
-	#newsletter {
-		
+	header {
+		margin-top:5vw;
 	}
+	
+	h1 {
+		font-size:13vw;
+		line-height:.95;
+		margin-top:-.1em;
+		letter-spacing:-.01em !important;
+		width:80vw;
+		margin:0 auto;
+	}
+	
+	.collection-callout {
+		width:60vw;
+		margin:0 auto;
+		line-height:1em;
+	}
+	
+	#newsletter {
+		margin-bottom:5vw;
+	}
+	
+	form {
+		input, button {
+			line-height:4.68vw;
+			padding:0 .5em;
+		}
+		
+		button {
+			margin-left:.25em;
+		}
+	}
+
 }

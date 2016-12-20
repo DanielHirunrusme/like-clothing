@@ -6,4 +6,29 @@
 		margin:0 auto;
 		margin-top:5vw;
 	}
+	
+	.masonry-type {
+		@include flexbox;
+		@include flex-direction(column)
+		
+		//width:100%;
+	
+		
+		h2 {
+			text-align:left;
+			width:38.5vw;
+			
+			&:first-child {
+				width:40vw;
+				margin-left:12vw;
+			}
+			
+			&:last-child {
+				margin-top:5vw;
+				width:48vw;
+				margin-right:1.8vw;
+				@include align-self(flex-end);
+			}
+		}
+	}
 }

@@ -51,6 +51,7 @@ h1, h2, h3, h4, h5, h6, a, nav, button {
 
 p {
 	text-align:left;
+	
 }
 
 span, time, a {
@@ -59,7 +60,7 @@ span, time, a {
 
 a {
 	text-decoration:none;
-	//color:$c-orange;
+	color:$c-white; 
 	
 	
 	&:hover {
@@ -82,36 +83,16 @@ a, a:active, a:focus, input:focus {
 
 ::-moz-selection { /* Code for Firefox */
     color: $c-black;
-    background: $c-global;
+    background: $c-white;
 }
 
 ::selection {
     color: $c-black;
-    background: $c-orange;
+    background: $c-white
 }
 
-.arrow, .left-arrow {
-	    vertical-align: top;
-		line-height:1;
-	img {
-		line-height:1;
-		vertical-align: middle;
-		margin-top: -.1em;
-		width:16px;
-		
-		@include respond-to(desktop) {
-			width:20px;
-		}
-	}
-}
 
-.up-arrow {
-	img {
-		@include respond-to(desktop) {
-			height:20px;
-		}
-	}
-}
+
 
 address {
 	font-style:normal; 
@@ -122,14 +103,58 @@ h1, h2, h3, h4, h5, h6, p, input, select {
 	//color:$c-black;
 }
 
-p:hover {
-	a {
-		color:$c-orange;
+h1 {
+	font-family:'Anno';
+	-webkit-text-stroke: 1px $c-white;
+	color:transparent;
+}
+
+h2 {
+	font-family:'Anno';
+	@include font-size($anno-h2-font-sizes); 
+	@include line-height($anno-h2-line-height); 
+	font-variant-ligatures: normal;
+}
+
+h3 {
+	font-family:'Eurostile_LT_Pro_Ext_Two';
+	text-transform:uppercase;
+	letter-spacing:.08em !important;
+	@include font-size($eurostile-smaller-body-font-sizes); 
+	@include line-height($eurostile-body-line-height); 
+	
+	span {
+		font-size:.75em;
 	}
+}
+
+h4 {
+	font-family:'Eurostile_LT_Pro_Ext_Two';
+	text-transform:uppercase;
+	@include font-size($eurostile-body-font-sizes); 
+	@include line-height($eurostile-body-line-height); 
+}
+
+h5 {
+	font-family:'Anno';
+	@include font-size($anno-body-font-sizes); 
+	@include line-height($anno-body-line-height); 
+}
+
+
+p {
+	font-family:'Anno';
+	@include font-size($anno-body-font-sizes); 
+	@include line-height($anno-body-line-height); 
 }
 
 
 /* FORM STYLING */
+
+input {
+	font-family:'NeueHaasGroteskDisp_Pro' !important;
+	color:$c-white;
+}
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder  {
    color: $c-white;
@@ -147,20 +172,11 @@ input:-ms-input-placeholder {
    color: $c-black;
 }
 
+
 input {
 	background:transparent;
 	border:1px solid $c-white;
 }
-
-
- 
-p {
-
-	//margin:0 auto;
-	
-	//@extend %globalText;
-}
-
 
 
 hr {

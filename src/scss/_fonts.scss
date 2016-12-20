@@ -1,27 +1,49 @@
 @font-face {
-	font-family: 'Unica-Medium';
-	src: url('fonts/NeueHaasUnicaW01-Medium.eot');
-	src: url('fonts/NeueHaasUnicaW01-Medium.eot?#iefix') format('embedded-opentype'),
-		url('fonts/NeueHaasUnicaW01-Medium.woff') format('woff'),
-		url('fonts/NeueHaasUnicaW01-Medium.ttf') format('truetype');
+	font-family: 'Riccione';
+	src: url('../fonts/Riccione-Light.eot');
+	src: url('../fonts/Riccione-Light.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Riccione-Light.woff') format('woff'),
+		url('../fonts/Riccione-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NeueHaasGroteskDisp_Pro';
+	src: url('../fonts/NHaasGroteskDSPro-55Rg.eot');
+	src: url('../fonts/NHaasGroteskDSPro-55Rg.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/NHaasGroteskDSPro-55Rg.woff') format('woff'),
+		url('../fonts/NHaasGroteskDSPro-55Rg.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
-
 @font-face {
-  font-family: 'Unica-Regular';
-  src: url('fonts/NeueHaasUnicaW01-Regular.eot?#iefix') format('embedded-opentype'),  url('fonts/NeueHaasUnicaW01-Regular.woff') format('woff'), url('fonts/NeueHaasUnicaW01-Regular.ttf')  format('truetype'), url('fonts/NeueHaasUnicaW01-Regular.svg#NeueHaasUnicaW01-Regular') format('svg');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'Eurostile_LT_Pro_Ext_Two';
+	src: url('../fonts/EurostileLTPro-BoldEx2.eot');
+	src: url('../fonts/EurostileLTPro-BoldEx2.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/EurostileLTPro-BoldEx2.woff') format('woff'),
+		url('../fonts/EurostileLTPro-BoldEx2.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
 }
 
 @font-face {
-	font-family: 'NHB';
-	src: url('fonts/NHaasGroteskTXPro-75Bd.eot');
-	src: url('fonts/NHaasGroteskTXPro-75Bd.eot?#iefix') format('embedded-opentype'),
-		url('fonts/NHaasGroteskTXPro-75Bd.woff') format('woff'),
-		url('fonts/NHaasGroteskTXPro-75Bd.ttf') format('truetype');
-	font-weight: bold;
+	font-family: 'Anno';
+	src: url('../fonts/Anno.eot');
+	src: url('../fonts/Anno.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Anno.woff') format('woff'),
+		url('../fonts/Anno.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'RiccioneTALK';
+	src: url('../fonts/RiccioneTALK-ExtraLight.eot');
+	src: url('../fonts/RiccioneTALK-ExtraLight.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/RiccioneTALK-ExtraLight.woff') format('woff'),
+		url('../fonts/RiccioneTALK-ExtraLight.ttf') format('truetype');
+	font-weight: 200;
 	font-style: normal;
 }
