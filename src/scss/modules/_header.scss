@@ -1,0 +1,11 @@
+header {
+	z-index:3;
+	
+	@include respond-to(mobile-landscape) {
+		display:none;
+	}
+	
+	.logo {
+		padding-top: 1.428vw;
+	}
+}

@@ -1,0 +1,8 @@
+main {
+	width: 88.56vw;
+	margin:0 auto;
+	
+	@include respond-to(mobile-portrait) {
+		width: 82.56vw;
+	}
+}
