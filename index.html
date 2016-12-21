@@ -20,11 +20,41 @@
 <body>
 
 <!-- Place your content here -->
-<div id="video" data-init-module="video"></div>
+<section id="video-container" data-module-init="videos">
+	<div class="video-scroll">
+		<div class="video-holder video-1">
+			<video id="video" src="assets/videos/clip1_web.mov"  autoplay loop playsinline></video>
+		</div>
+		<div class="video-holder">
+			<video id="video" src="assets/videos/clip2_web.mov"  autoplay loop playsinline></video>
+		</div>
+		<div class="video-holder">
+			<video id="video" src="assets/videos/clip3_web.mov"  loop playsinline></video>
+		</div>
+		<div class="video-holder">
+			<video id="video" src="assets/videos/clip4_web.mov"  loop playsinline></video>
+		</div>
+		<div class="video-holder">
+			<video id="video" src="assets/videos/clip5_web.mov"  loop playsinline></video>
+		</div>
+		<div class="video-holder">
+			<video id="video" src="assets/videos/clip6_web.mov"  loop playsinline></video>
+		</div>
+		<div class="video-holder video-7">
+			<video id="video" src="assets/videos/clip7_web.mov"  loop playsinline></video>
+		</div>
+	</div>
+	
+	
+	
+</section>
 
 <button class="button--mute"></button>
 
-<section id="top-section">
+<div id="color-overlay"></div>
+
+<div class="wrapper">
+<section class="top-section">
 
 	<header>
 		<h3>Like Clothing <span class="h3-sub">Presents</span></h3>
@@ -36,21 +66,30 @@
 	
 	<h2 class="collection-callout">Collection 05 and &#xFB01;lm premiers January 2016,</h2>
 	
-	<form id="newsletter" action="#">
+	<form class="newsletter" action="#">
 		<input type="email" placeholder="Email Address" />
 		<button type="submit" class="button--submit">Subscribe</button>
 	</form>
 
+	
+
 </section>
 
-<section id="bottom-section">
-	
+
+
+<section class="bottom-section">
+	<!--
+	<div class="gradient-swipe-holder gradient-swipe-top">
+		<div class="gradient-swipe"></div>
+		<div class="gradient-solid"></div>
+	</div>
+	-->
 	<div class="masonry-type">
 		<h2>In collaboration with Eric Mack</h2>
 		<h2>And original score by Michael Beharie</h2>
 	</div>
 	
-	<article id="credits">
+	<article class="credits">
 		
 		<ul>
 			<li><h4>Lauren</h4><h5>Lauren Perlman</h5></li>
@@ -79,29 +118,39 @@
 		
 	</article>
 	
-	<p id="information">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat dignissim metus sit amet porttitor. Donec rutrum ex in tellus rhoncus commodo vel eget dui. Suspendisse ut tortor rutrum, aliquam nisl quis, consectetur dolor. Vestibulum vel augue elit. Aliquam lacinia eleifend tellus ut pulvinar. Integer finibus sollicitudin dui, sed semper lectus hendrerit eu. Sed scelerisque laoreet est, a consectetur turpis. Duis id metus odio. Morbi posuere, est a pharetra lobortis, eros nisi semper justo, ut tempor elit turpis sed lorem. Morbi non ultricies augue. Nam luctus neque sit amet orci varius rutrum. Maecenas porttitor lorem eget diam porta, a pellentesque odio varius. Fusce viverra tortor et odio ultricies, at efficitur est blandit. Nulla commodo est vel est ullamcorper vestibulum.</p>
+	<div class="information">
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat dignissim metus sit amet porttitor. Donec rutrum ex in tellus rhoncus commodo vel eget dui. Suspendisse ut tortor rutrum, aliquam nisl quis, consectetur dolor. Vestibulum vel augue elit. Aliquam lacinia eleifend tellus ut pulvinar. Integer finibus sollicitudin dui, sed semper lectus hendrerit eu. Sed scelerisque laoreet est, a consectetur turpis. Duis id metus odio. Morbi posuere, est a pharetra lobortis, eros nisi semper justo, ut tempor elit turpis sed lorem. Morbi non ultricies augue. Nam luctus neque sit amet orci varius rutrum. Maecenas porttitor lorem eget diam porta, a pellentesque odio varius. Fusce viverra tortor et odio ultricies, at efficitur est blandit. Nulla commodo est vel est ullamcorper vestibulum.</p>
+	</div>
 	
+	<footer>
+	
+		<ul>
+			<li><a href="" title="Media Kit">Media Kit (zip)</a> |</li>
+			<li><a href="#" title="Press &amp; Sales Inquiries">Press &amp; Sales Inquiries (Email)</a></li>
+		</ul>
+	
+		<ul>
+			<li><a href="#" title="Collection 04 pdf">Collection 04 (pdf)</a> | </li>
+			<li><a href="#" title="Collection 03 pdf">Collection 03 (pdf)</a> | </li>
+			<li><a href="#" title="Collection 02 pdf">Collection 02 (pdf)</a></li>
+		</ul>
+	
+		<div class="copyright"><p>&copy; Copyright 2016, Like Clothing</p> <span class="social-links"><a href="#">Twitter</a>, <a href="#">Instagram</a>, <a href="#">Facebook</a></span></div>
+	
+	</footer>
+	<!--
+	<div class="gradient-bottom-holder">
+		<div class="gradient-solid"></div>
+		<div class="gradient-swipe"></div>
+	</div>
+	-->
 </section>
+</div><!--wrapper-->
 
-<footer>
-	
-	<ul>
-		<li><a href="" title="Media Kit">Media Kit (zip)</a> |</li>
-		<li><a href="#" title="Press &amp; Sales Inquiries">Press &amp; Sales Inquiries (Email)</a></li>
-	</ul>
-	
-	<ul>
-		<li><a href="#" title="Collection 04 pdf">Collection 04 (pdf)</a> | </li>
-		<li><a href="#" title="Collection 03 pdf">Collection 03 (pdf)</a> | </li>
-		<li><a href="#" title="Collection 02 pdf">Collection 02 (pdf)</a></li>
-	</ul>
-	
-	<div class="copyright"><p>&copy; Copyright 2016, Like Clothing</p> <a href="#">Twitter</a>, <a href="#">Instagram</a>, <a href="#">Facebook</a></div>
-	
-</footer>
 
 <!-- JS -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-  
+<script src="http://cdn.jsdelivr.net/velocity/1.4.0/velocity.min.js"></script>
+<script src="assets/js/main.min.js"></script>
 </body>
 </html>

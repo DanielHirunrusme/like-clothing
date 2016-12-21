@@ -20,6 +20,7 @@
   "dependencies": {
     "barba.js": "^0.0.10",
     "fastclick": "^1.0.6",
+    "iphone-inline-video": "^1.9.4",
     "jquery": "^3.1.1"
   },
   "devDependencies": {

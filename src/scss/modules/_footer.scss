@@ -1,6 +1,8 @@
 footer {
-	margin:5vw 0 5vw 0;
+	padding:5vw 0 0  0;
 	text-align:center;
+	position:relative;
+	z-index:2;
 	
 	* {
 		font-family:'NeueHaasGroteskDisp_Pro';
@@ -23,11 +25,18 @@ footer {
 		@include justify-content(center);
 		@include align-content(center);
 		@include align-items(flex-end);
-		margin:5vw auto;
+		padding:5vw 0;
+		margin:0 auto;
 		
 		text-align:center;
 		@include font-size($p-font-sizes); 
 		@include line-height($p-line-height); 
+		
+		
+		@include respond-to(mobile-portrait) {
+			@include flex-direction(column);
+			@include align-items(center);
+		}
 		
 		a {
 			margin-left:.5vw;

@@ -178,6 +178,10 @@ input {
 	border:1px solid $c-white;
 }
 
+input:focus, input:hover {
+	background:$c-background;
+	border-color:$c-background;
+}
 
 hr {
 	border:none;

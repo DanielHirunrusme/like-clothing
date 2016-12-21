@@ -4,7 +4,7 @@
  * and calls the corresponding script
  */
 
-var unique = true;
+
 
 function initializeModules() {
   var modules = document.querySelectorAll( "[data-module-init]" );
@@ -15,24 +15,14 @@ function initializeModules() {
     var Module;
 
     for ( var j = 0; j < names.length; j++ ) {
-	  if(unique) { 
-	      try {
-	        Module = require( "modules/" + names[ j ] );
-	      } catch ( e ) {
-	        Module = false;
-	        console.log( names[ j ] + " module does not exist." );
-	      }
-	  } else {
-		  
-		  if(names[ j ] != 'pjax-container' && names[ j ] != 'settings') {
-		      try {
-		        Module = require( "modules/" + names[ j ] );
-		      } catch ( e ) {
-		        Module = false;
-		        console.log( names[ j ] + " module does not exist." );
-		      }
-	  		}
-	  }
+	 
+      try {
+        Module = require( "modules/" + names[ j ] );
+      } catch ( e ) {
+        Module = false;
+        console.log( names[ j ] + " module does not exist." );
+      }
+	  
 
       // Initialize the module with the calling element
       if ( Module ) {

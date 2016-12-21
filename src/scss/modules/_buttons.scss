@@ -19,4 +19,9 @@ button {
 .button--submit {
 	border:1px solid $c-white;
 	padding:0 .5em;
+	
+	&:hover {
+		background:$c-background;
+		border-color:$c-background;
+	}
 }
