@@ -10,7 +10,7 @@ $g-unit:20px;
 //breakpoints
 $break-desktop:1441px;
 $break-laptop:1440px;
-$break-ipad:1000px;
+$break-ipad:767px;
 $break-phone:767px;
 
 //animation
@@ -179,6 +179,9 @@ $eurostile-smaller-body-font-sizes: (
   $break-laptop : 1.10vw,
   $break-desktop: 1.10vw
 );
+
+
+
 
 
 

@@ -10,7 +10,9 @@ module.exports = function( el ) {
 		xListener = 0,
 		xPos = 0,
 		scrollInt,
-		autoScroll = true,
+		initLoad = true,
+		autoScrollTimer,
+		autoScroll = false,
 		$scrollContainer = $('.wrapper');
 
 		console.log('%c[video module init]', 'color:blue;');
@@ -41,6 +43,7 @@ module.exports = function( el ) {
 			
 			if(st >= $scrollContainer[0].scrollHeight - $window.height()) {
 				$('.wrapper').addClass('looped');
+				$scrollContainer.animate({ scrollTop:0 }, 0)
 				$scrollContainer.scrollTop(0);
 				$('.top-section.bottom-fixed').css('opacity', 0)
 			}
@@ -82,15 +85,27 @@ module.exports = function( el ) {
 			}
 		}
 		
-		$scrollContainer.on('mousewheel', function(event) {
-			
-			
-			//var gradientTopPos = $('body').scrollTop();
+		$scrollContainer.on('mousewheel', function(event){
+			console.log('mousewheel triggered')
 			autoScroll = false;
+			clearTimeout(autoScrollTimer);
+			autoScrollTimer = setTimeout(function(){
+				autoScroll = true;
+			}, 10000);
+		});
+		
+		$scrollContainer.on('scroll', function(event) {
+			event.stopPropagation();
+			console.log('scroll triggered')
+			//var gradientTopPos = $('body').scrollTop();
+			
+		
+			
+			
 			checkScrollPos();
 			fadeOverlay();
 			
-	
+			//console.log(event.deltaX)
 			
 			
 			if(event.deltaY < 0) {
@@ -98,9 +113,9 @@ module.exports = function( el ) {
 				xListener += event.deltaY;
 			}
 			
-			if(event.deltaX < 0) {
-				xPos += event.deltaX;
-				xListener += event.deltaX;
+			if(event.deltaX > 1) {
+				xPos -= event.deltaX;
+				xListener -= event.deltaX;
 			}
 			
 		    watchVideos();
@@ -120,10 +135,15 @@ module.exports = function( el ) {
 			setVideos();
 			fadeOverlay();
 			$('#video-container').fadeIn(6000);
+			
+			autoScrollTimer = setTimeout(function(){
+				autoScroll = true;
+			}, 2000);
+			
 			// Usage
 			animLoop(function( deltaT ) {
-				xPos -= 1;
-				xListener -= 1;
+				xPos -= .2;
+				xListener -= .2;
 				$('.video-scroll').css({
 				    "-webkit-transform":"translate("+xPos+"px,0)",
 				    "-ms-transform":"translate("+xPos+"px,0)",
@@ -134,7 +154,9 @@ module.exports = function( el ) {
 				  //console.log ($('video').eq(0).position().left)
 				  if(autoScroll) {
 					  checkScrollPos();
-				  	$('body').scrollTop($('body').scrollTop() + 1);
+					  fadeOverlay();
+				  	  $scrollContainer.scrollTop($scrollContainer.scrollTop() + 1);
+					  //initLoad = false;
 				  }
 				  watchVideos();
 				  

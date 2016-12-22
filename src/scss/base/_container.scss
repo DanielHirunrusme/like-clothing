@@ -1,11 +1,14 @@
 .wrapper {
-	position:absolute;
+	position:fixed;
+	z-index:2;
 	top:0;
 	left:0;
 	width:100vw;
 	height:100%;
 	overflow-y:scroll;
+	@include opacity(0);
 	display:none;
+	-webkit-overflow-scrolling: touch; /* lets it scroll lazy */
 }
 
 .wrapper.looped {

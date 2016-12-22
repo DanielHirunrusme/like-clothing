@@ -1,9 +1,14 @@
 .bottom-section {
 	text-align:center;
 	//margin-top:150vh;
-	margin-bottom:100%;
+	margin-top:3vw;
+	margin-bottom:200vh; 
 	position:relative;
 	z-index:2;
+	
+	@include respond-to(mobile-portrait) {
+		margin-top:5vh;
+	}
 	
 	* {
 		//background:$c-background;
@@ -41,8 +46,10 @@
 			}
 			
 			&:first-child {
-				width:40vw;
-				margin-left:12vw;
+				width:38vw;
+				margin-right:50vw;
+				
+				@include align-self(flex-end);
 				
 				@include respond-to(mobile-portrait) {
 					width:60%;
@@ -54,7 +61,7 @@
 			&:last-child {
 				padding-top:5vw;
 				width:48vw;
-				margin-right:1.8vw;
+				margin-right:1vw;
 				@include align-self(flex-end);
 				
 				@include respond-to(mobile-portrait) {
@@ -116,6 +123,19 @@
 			height:50vh;
 			width:100%;
 			background:$c-background;
+		}
+	}
+}
+
+.landscape-format {
+	.bottom-section {
+		
+		.masonry-type {
+			h2 {
+				&:first-child {
+					width:60vh;
+				}
+			}
 		}
 	}
 }

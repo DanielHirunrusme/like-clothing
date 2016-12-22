@@ -8,7 +8,9 @@ module.exports = function( el ) {
 		
 		function init(){
 			$window.on('resize', winResize);
-			$('.wrapper').fadeIn(3000);
+			//$('.wrapper').stop().fadeIn(3000);
+			$('.wrapper').show().addClass('fade-in');
+			
 		}
 		
 		function winResize(){

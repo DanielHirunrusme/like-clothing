@@ -42,6 +42,7 @@
 				
 				@include respond-to(mobile-portrait) {
 					text-align:center;
+					margin-right:0;
 				}
 			}
 			
@@ -51,6 +52,7 @@
 				
 				@include respond-to(mobile-portrait) {
 					text-align:center;
+					margin-left:0;
 				}
 			}
 		}
