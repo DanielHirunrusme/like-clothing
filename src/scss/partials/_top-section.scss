@@ -4,10 +4,10 @@
 	@include justify-content(space-between);
 	
 	height:100vh;
-	min-height:800px;
+	//min-height:800px;
 	text-align:center;
 	position:relative;
-	z-index:2;
+	z-index:3;
 	//position:fixed;
 	top:0;
 	left:0;
@@ -66,6 +66,47 @@
 	
 	
 
+}
+
+
+.top-section.bottom-fixed {
+	position:fixed;
+	top:0;
+	left:0;
+	//pointer-events:none;
+	z-index:1;
+	@include opacity(0);
+}
+
+.landscape-format {
+	.top-section {
+		
+		header {
+			margin-top:6vh;
+		}
+		
+		h1 {
+			font-size:20vh;
+		}
+		
+		h3 {
+			font-size:1.575vh;
+		}
+		
+		.collection-callout {
+			font-size:9vh;
+		}
+		
+		form {
+			margin-bottom:6vh;
+			
+			input, button {
+				line-height:8vh;
+				font-size:2.5vh;
+			}
+		}
+	}
+	
 }
 
 .scrolling {

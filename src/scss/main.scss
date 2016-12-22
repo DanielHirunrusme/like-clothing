@@ -1,6 +1,9 @@
+@import "variables";
+@import "base/transition";
+
 @import "breakpoint";
 @import "helpers";
-@import "variables";
+
 
 @import "fonts";
 @import "typography";
@@ -12,7 +15,7 @@
 @import "base/container";
 @import "base/layout";
 @import "base/normalize";
-@import "base/transition";
+
 
 //modules
 @import "modules/animation";

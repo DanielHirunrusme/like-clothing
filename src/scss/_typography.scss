@@ -176,6 +176,8 @@ input:-ms-input-placeholder {
 input {
 	background:transparent;
 	border:1px solid $c-white;
+	//@include transition(.2s background);
+	//@include transition(.2s border);
 }
 
 input:focus, input:hover {
@@ -198,5 +200,9 @@ hr {
 	}
 }
 
-
+.mobile-portrait-hide {
+	@include respond-to(mobile-portrait) {
+		display:none;
+	}
+}
 

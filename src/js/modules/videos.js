@@ -29,30 +29,57 @@ module.exports = function( el ) {
 			}
 			
 			if($scrollContainer.hasClass('looped')) {
+				$scrollContainer.removeClass('looped');
+				
 				if(st > $window.height()) {
 					$scrollContainer.removeClass('looped');
-					$scrollContainer.scrollTop(0);
+					//$scrollContainer.scrollTop(0);
 				} 
 				
 			}
 			
-			if(st >= $scrollContainer[0].scrollHeight - ($window.height() * 3) ) {
-				
-				
-				//$('.wrapper-clone').append($wrapper);
-			}
 			
 			if(st >= $scrollContainer[0].scrollHeight - $window.height()) {
 				$('.wrapper').addClass('looped');
 				$scrollContainer.scrollTop(0);
+				$('.top-section.bottom-fixed').css('opacity', 0)
 			}
 		}
 		
 		function fadeOverlay(){
 			var st = $scrollContainer.scrollTop();
-			var op = (st / $window.height()) * 1;
-			console.log('op ' + op)
-			$('#color-overlay').css('opacity', op);
+			if(!$scrollContainer.hasClass('looped')) {
+				if(st < $window.height()) {
+				
+					var op = (st / $window.height()) * 1;
+					console.log('op ' + op)
+					$('#color-overlay').css('opacity', op);
+				} else {
+					//$('#color-overlay').css('opacity', 1);
+				}
+			} else {
+				if( st < $window.height() * 2) {
+				
+					var op = st - $window.height() + (st / $window.height()) * 1;
+					console.log('op ' + op)
+					$('#color-overlay').css('opacity', op);
+					
+				} else {
+					//$('#color-overlay').css('opacity', 1);
+				}
+			}
+			
+			if(st >= $scrollContainer[0].scrollHeight - ($window.height() * 2 ) ) {
+				console.log( ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height()  )
+				//console.log( $scrollContainer[0].scrollHeight / (st + $window.height()) )
+				//console.log($scrollContainer[0].scrollHeight);
+				//console.log(st + $window.height());
+				//console.log( ( $scrollContainer[0].scrollHeight - st  )/ $window.height()  )
+				//console.log( ($scrollContainer[0].scrollHeight - st) / ( $scrollContainer[0].scrollHeight - $window.height()) )
+				var op = ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height();
+				$('#color-overlay').css('opacity', op);
+				$('.top-section.bottom-fixed').css('opacity', 1 - op);
+			}
 		}
 		
 		$scrollContainer.on('mousewheel', function(event) {
@@ -91,6 +118,8 @@ module.exports = function( el ) {
 		
 		function init(){
 			setVideos();
+			fadeOverlay();
+			$('#video-container').fadeIn(6000);
 			// Usage
 			animLoop(function( deltaT ) {
 				xPos -= 1;
