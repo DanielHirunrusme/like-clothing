@@ -199,7 +199,7 @@ input {
 	//@include transition(.2s border);
 }
 
-input:focus, input:hover {
+input:focus, input:hover, input.over {
 	background:$c-background;
 	border-color:$c-background;
 }

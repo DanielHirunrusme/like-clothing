@@ -3,6 +3,15 @@
  * @type {Object}
  */
 
+function checkMobile(){
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
 
 var settings = module.exports = {
 	breakpoints: {
@@ -20,7 +29,8 @@ var settings = module.exports = {
 	animationType: "linear",
 	animating: false,
 	unique: true,
-	isMobile: false,
+	scroller: null,
+	isMobile: checkMobile(),
 	page: '',
 };
 
@@ -32,3 +42,4 @@ settings.scrollPos = settings.scrollPos;
 settings.scrollContainer = settings.scrollContainer;
 settings.animating = settings.animating;
 settings.unique = settings.unique;
+settings.scroller = settings.scroller;

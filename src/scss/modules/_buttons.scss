@@ -20,7 +20,8 @@ button {
 	border:1px solid $c-white;
 	padding:0 .5em;
 	
-	&:hover {
+	&:hover, &.over {
+		cursor:pointer;
 		background:$c-background;
 		border-color:$c-background;
 	}

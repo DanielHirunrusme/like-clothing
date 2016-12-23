@@ -75,10 +75,17 @@
 	position:fixed;
 	top:0;
 	left:0;
-	//pointer-events:none;
-	z-index:1;
+	pointer-events:none; 
+	z-index:3;
+	display:none; 
 	@include opacity(0);
 }
+
+.top-section.bottom-fixed.show {
+	@include flexbox;
+}
+
+
 
 .landscape-format {
 	.top-section {
@@ -112,7 +119,13 @@
 }
 
 .scrolling {
-	.top-section {
+	.top-section, .top-section.bottom-fixed {
 		pointer-events:none;
+	}
+}
+
+.autoScroll {
+	.top-section, .top-section.bottom-fixed {
+		pointer-events:auto;
 	}
 }

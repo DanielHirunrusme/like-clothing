@@ -7,7 +7,13 @@ body, html {
 	overflow:hidden;
 }
 
+body.text {
+	cursor:text;
+}
 
+body.pointer {
+	cursor:pointer;
+}
 
 *:before, *:after {
     -webkit-box-sizing: border-box;

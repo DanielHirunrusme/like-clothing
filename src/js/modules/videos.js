@@ -1,7 +1,8 @@
 var makeVideoPlayableInline = require('iphone-inline-video'),
+	settings = require('modules/settings'),
 	mousewheel = require('jquery-mousewheel')($);
 
-module.exports = function( el ) {
+var videos = module.exports = function( el ) {
 		var $el = $( el ),
 		$window = $( window ),
 		$videoScroll = $el.find('.video-scroll'),
@@ -13,191 +14,170 @@ module.exports = function( el ) {
 		initLoad = true,
 		autoScrollTimer,
 		autoScroll = false,
-		$scrollContainer = $('.wrapper');
+		last_position = {},
+		$scrollContainer = $('.wrapper'),
+		st;
 
 		console.log('%c[video module init]', 'color:blue;');
 		
-		$('video').each(function () {
-		    makeVideoPlayableInline(this);
-		});
 		
-		function checkScrollPos(){
-			clearInterval(scrollInt);
-			var st = $scrollContainer.scrollTop();
+		function winMouseMove(event) {
+			//if(event)
 			
 			
-			if(st <= 0) {
-				//$('body').scrollTop($('body')[0].scrollHeight);
-			}
+			//check to make sure there is data to compare against
+		    if (typeof(last_position.x) != 'undefined') {
+
+		        //get the change from last position to this position
+		        var deltaX = last_position.x - event.clientX,
+		            deltaY = last_position.y - event.clientY;
+
+		        //check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
+		        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX > 0) {
+		            //left
+					console.log('moving left')
+					xPos -= Math.abs(deltaX);
+		        } else if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+		            //right
+		        } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 0) {
+		            //up
+		        } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY < 0) {
+		            //down
+		        }
+		    }
+
+		    //set the new last position to the current for next time
+		    last_position = {
+		        x : event.clientX,
+		        y : event.clientY
+		    };
 			
-			if($scrollContainer.hasClass('looped')) {
-				$scrollContainer.removeClass('looped');
-				
-				if(st > $window.height()) {
-					$scrollContainer.removeClass('looped');
-					//$scrollContainer.scrollTop(0);
-				} 
-				
-			}
 			
-			
-			if(st >= $scrollContainer[0].scrollHeight - $window.height()) {
-				$('.wrapper').addClass('looped');
-				$scrollContainer.animate({ scrollTop:0 }, 0)
-				$scrollContainer.scrollTop(0);
-				$('.top-section.bottom-fixed').css('opacity', 0)
-			}
 		}
 		
-		function fadeOverlay(){
-			var st = $scrollContainer.scrollTop();
-			if(!$scrollContainer.hasClass('looped')) {
-				if(st < $window.height()) {
-				
-					var op = (st / $window.height()) * 1;
-					console.log('op ' + op)
-					$('#color-overlay').css('opacity', op);
-				} else {
-					//$('#color-overlay').css('opacity', 1);
-				}
-			} else {
-				if( st < $window.height() * 2) {
-				
-					var op = st - $window.height() + (st / $window.height()) * 1;
-					console.log('op ' + op)
-					$('#color-overlay').css('opacity', op);
-					
-				} else {
-					//$('#color-overlay').css('opacity', 1);
-				}
-			}
-			
-			if(st >= $scrollContainer[0].scrollHeight - ($window.height() * 2 ) ) {
-				console.log( ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height()  )
-				//console.log( $scrollContainer[0].scrollHeight / (st + $window.height()) )
-				//console.log($scrollContainer[0].scrollHeight);
-				//console.log(st + $window.height());
-				//console.log( ( $scrollContainer[0].scrollHeight - st  )/ $window.height()  )
-				//console.log( ($scrollContainer[0].scrollHeight - st) / ( $scrollContainer[0].scrollHeight - $window.height()) )
-				var op = ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height();
-				$('#color-overlay').css('opacity', op);
-				$('.top-section.bottom-fixed').css('opacity', 1 - op);
-			}
-		}
 		
-		$scrollContainer.on('mousewheel', function(event){
-			console.log('mousewheel triggered')
-			autoScroll = false;
-			clearTimeout(autoScrollTimer);
-			autoScrollTimer = setTimeout(function(){
-				autoScroll = true;
-			}, 10000);
-		});
+	
 		
-		$scrollContainer.on('scroll', function(event) {
-			event.stopPropagation();
-			console.log('scroll triggered')
-			//var gradientTopPos = $('body').scrollTop();
-			
 		
-			
-			
-			checkScrollPos();
-			fadeOverlay();
-			
-			//console.log(event.deltaX)
-			
-			
-			if(event.deltaY < 0) {
-				xPos += event.deltaY;
-				xListener += event.deltaY;
-			}
-			
-			if(event.deltaX > 1) {
-				xPos -= event.deltaX;
-				xListener -= event.deltaX;
-			}
-			
-		    watchVideos();
-			$('body').addClass('scrolling');
-			
-			clearTimeout($.data(this, 'timer'));
-			  $.data(this, 'timer', setTimeout(function() {
-				  $('body').removeClass('scrolling');
-			     //do something
-			  }, 250));
-			  
-			  
-		    //console.log(event.deltaX, event.deltaY, event.deltaFactor);
-		});
 		
 		function init(){
+			
+			if(settings.isMobile) {
+				$('video').each(function () {
+				    makeVideoPlayableInline(this);
+				});
+			}
+			
 			setVideos();
-			fadeOverlay();
+		
 			$('#video-container').fadeIn(6000);
 			
-			autoScrollTimer = setTimeout(function(){
-				autoScroll = true;
-			}, 2000);
-			
-			// Usage
-			animLoop(function( deltaT ) {
-				xPos -= .2;
-				xListener -= .2;
-				$('.video-scroll').css({
-				    "-webkit-transform":"translate("+xPos+"px,0)",
-				    "-ms-transform":"translate("+xPos+"px,0)",
-				    "transform":"translate("+xPos+"px,0)"
-				  });​
-					
-				  //console.log($window.width())
-				  //console.log ($('video').eq(0).position().left)
-				  if(autoScroll) {
-					  checkScrollPos();
-					  fadeOverlay();
-				  	  $scrollContainer.scrollTop($scrollContainer.scrollTop() + 1);
-					  //initLoad = false;
-				  }
-				  watchVideos();
-				  
-			    //elem.style.left = ( left += 10 * deltaT / 16 ) + "px";
 
-			// optional 2nd arg: elem containing the animation
-			} );
+			if(!settings.isMobile){
+				// Usage
+				animLoop(function( deltaT ) {
+					xPos -= .2;
+					xListener -= .2;
+					$('.video-scroll').css({
+					    "-webkit-transform":"translate("+xPos+"px,0)",
+					    "-ms-transform":"translate("+xPos+"px,0)",
+					    "transform":"translate("+xPos+"px,0)"
+					  });​
+					 
+					  watchVideos();
+						/*
+					  if(autoScroll) {
+						  $('input').blur();
+						  startAutoScroll();
+						  checkScrollPos();
+						  fadeOverlay();
+					  	  $scrollContainer.scrollTop($scrollContainer.scrollTop() + 1);
+	
+					  }
+					  watchcontrolScroll();
+				  */
+				    
+				} );
+			}
+			
+			
+			//$('.newsletter input').on('focus', inputFocus);
 			
 			$window.on('resize', winResize);
 			
+		}
+		
+		function inputFocus(){
+			if(!$('.bottom-fixed').hasClass('show')) {
+				
+			} else {
+				
+			}
 			
 		}
 		
 		function watchVideos(){
 			
-			if(xPos < -vidScrollWidth ) {
-				xPos = 0;
-				xListener = 0;
-				$videoScroll.append($('.video-holder').eq(0));
-				
-				for(var i=0; i<$('.video-holder').length; i++) {
-					$('.video-holder').eq(i).css('left', ( $videoWidth * i) + 'px');
+			//console.log( $('.video-1-clone').position().left )
+			
+			$('.video-holder').each(function(){
+				if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $window.width() ) {
+					if(!$(this).find('video').hasClass('playing')) {
+						$(this).find('video')[0].play();
+					}
+					$(this).find('video').addClass('playing');
+					
+				} else {
+					if($(this).hasClass('playing')){
+						$(this).removeClass('playing');
+						$(this).find('video')[0].pause();
+					}
+					
 				}
-				$('.video-holder').eq(1).find('video')[0].play();
-				console.log('reset entire piece')
-				return true;
+			});
+			
+			if( $('.video-1-clone').position().left <= 0 ) {
+				xPos = 0;
+				$('#video-1').currentTime = $('#video-8')[0].currentTime;
+				$('.video-scroll').css({
+				    "-webkit-transform":"translate("+xPos+"px,0)",
+				    "-ms-transform":"translate("+xPos+"px,0)",
+				    "transform":"translate("+xPos+"px,0)"
+				  });​
+				  
+				
 			}
 			
-			if(xListener < -$videoWidth) {
-				xListener = 0;
-				var _left = Number( $('.video-holder').last().css('left').split('px').join('') ) + $videoWidth;
-			
-				$('.video-holder').eq(2).find('video')[0].play();
-				$('.video-holder').eq(0).find('video')[0].pause();
-				$('.video-holder').eq(0).css('left', _left + 'px')
-				$videoScroll.append($('.video-holder').eq(0));
-			}
-			
+		
 			
 			
 		}
+		
+		
+		$window.on('mousewheel touchmove', function(event){
+			
+			
+			if(event.type == 'mousewheel') {
+				if(event.deltaY < 0) {
+					xPos += event.deltaY;
+					xListener += event.deltaY;
+				}
+			
+				if(event.deltaX > 1) {
+					xPos -= event.deltaX;
+					xListener -= event.deltaX;
+				}
+			} else if(event.type == 'touchmove') {
+				
+			} else {
+				//return true;
+			}
+			
+			watchVideos();
+
+			//checkScrollPos()  
+			//stopAutoScroll();
+		});
 		
 		function setVideos(){
 			vidScrollWidth = 0;
@@ -209,18 +189,7 @@ module.exports = function( el ) {
 			//console.log(vidScrollWidth);
 		}
 		
-		/*
-		setInterval(function(){
-			xPos-= 1;
-			$('.video-scroll').css({
-			    "-webkit-transform":"translate("+xPos+"px,0)",
-			    "-ms-transform":"translate("+xPos+"px,0)",
-			    "transform":"translate("+xPos+"px,0)"
-			  });​
-		}, 10);
-		*/
 		
-	
 		function animLoop( render, element ) {
 		    var running, lastFrame = +new Date;
 		    function loop( now ) {
@@ -252,6 +221,9 @@ module.exports = function( el ) {
 			setVideos();
 		}
 		
+
 		init();
+		
+		
 };
   

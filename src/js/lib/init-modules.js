@@ -13,11 +13,12 @@ function initializeModules() {
     var el = modules[ i ];
     var names = el.getAttribute( "data-module-init" ).split( " " );
     var Module;
-
     for ( var j = 0; j < names.length; j++ ) {
 	 
       try {
+		  
         Module = require( "modules/" + names[ j ] );
+		
       } catch ( e ) {
         Module = false;
         console.log( names[ j ] + " module does not exist." );
