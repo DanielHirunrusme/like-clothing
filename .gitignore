@@ -44,3 +44,4 @@ Thumbs.db
 grunt-config.json
 config.yml
 /assets/videos
+/assets/audio

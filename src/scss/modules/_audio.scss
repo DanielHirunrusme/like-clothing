@@ -1,0 +1,32 @@
+#audio {
+	@include transition(.3s opacity);
+	position:fixed;
+	right:0;
+	top:0;
+	padding:3vw 2vw;
+	//width:72px;
+	z-index:5;
+	@include opacity(.4);
+	
+	&:hover {
+		@include opacity(.4);
+	}
+	
+	&.active {
+		@include opacity(1);
+	}
+	
+	&.active:hover {
+		@include opacity(.4);
+	}
+	
+	svg {
+		width: 25px;
+	}
+}
+
+.landscape-format {
+	#audio {
+		padding:4vh 3vh;
+	}
+}

@@ -78,25 +78,16 @@ var videos = module.exports = function( el ) {
 				animLoop(function( deltaT ) {
 					xPos -= .2;
 					xListener -= .2;
+					//$('.video-scroll').css('left', xPos);
+					
 					$('.video-scroll').css({
-					    "-webkit-transform":"translate("+xPos+"px,0)",
-					    "-ms-transform":"translate("+xPos+"px,0)",
-					    "transform":"translate("+xPos+"px,0)"
+					    "-webkit-transform":"translate3d("+xPos+"px,0,0)",
+					    "-ms-transform":"translate3d("+xPos+"px,0,0)",
+					    "transform":"translate3d("+xPos+"px,0,0)"
 					  });​
-					 
+					
 					  watchVideos();
-						/*
-					  if(autoScroll) {
-						  $('input').blur();
-						  startAutoScroll();
-						  checkScrollPos();
-						  fadeOverlay();
-					  	  $scrollContainer.scrollTop($scrollContainer.scrollTop() + 1);
-	
-					  }
-					  watchcontrolScroll();
-				  */
-				    
+
 				} );
 			}
 			
@@ -124,20 +115,27 @@ var videos = module.exports = function( el ) {
 				if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $window.width() ) {
 					if(!$(this).find('video').hasClass('playing')) {
 						$(this).find('video')[0].play();
+						console.log('play ' + $(this).find('video').attr('src'))
 					}
 					$(this).find('video').addClass('playing');
 					
 				} else {
-					if($(this).hasClass('playing')){
-						$(this).removeClass('playing');
+					if($(this).find('video').hasClass('playing')){
+						console.log('pause ' + $(this).find('video').attr('src'))
+						$(this).find('video').removeClass('playing');
 						$(this).find('video')[0].pause();
 					}
 					
 				}
 			});
 			
+			//$('#video-1').currentTime = $('#video-8')[0].currentTime;
+			//console.log($('.video-1-clone').position().left)
 			if( $('.video-1-clone').position().left <= 0 ) {
+				console.log('loop videos')
+				
 				xPos = 0;
+				xListener = 0;
 				$('#video-1').currentTime = $('#video-8')[0].currentTime;
 				$('.video-scroll').css({
 				    "-webkit-transform":"translate("+xPos+"px,0)",
@@ -155,7 +153,7 @@ var videos = module.exports = function( el ) {
 		
 		
 		$window.on('mousewheel touchmove', function(event){
-			
+			event.stopPropagation();
 			
 			if(event.type == 'mousewheel') {
 				if(event.deltaY < 0) {
@@ -175,14 +173,12 @@ var videos = module.exports = function( el ) {
 			
 			watchVideos();
 
-			//checkScrollPos()  
-			//stopAutoScroll();
 		});
 		
 		function setVideos(){
 			vidScrollWidth = 0;
 			$('.video-holder').each(function(){
-				$(this).css('left', $(this).width() * $(this).index());
+				$(this).css('width', Math.floor($window.height() * 1.777)).css('left', Math.floor( $(this).width() * $(this).index()) );
 				vidScrollWidth += $(this).width(); 
 			});
 			$videoScroll.css('width', vidScrollWidth);
@@ -205,16 +201,7 @@ var videos = module.exports = function( el ) {
 
 		
 		
-		/*
-		$('.video-scroll').velocity({
-			translateZ: 0, // Force HA by animating a 3D property
-		    translateX: "-10000px"
-		}, {
-		    
-			duration:100000,
-		    easing: "linear",
-		});
-		*/
+
 		
 		function winResize(){
 			$videoWidth = $('.video-holder').width();

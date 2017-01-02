@@ -1,6 +1,7 @@
 var makeVideoPlayableInline = require('iphone-inline-video'),
 	settings = require('modules/settings'),
-	mousewheel = require('jquery-mousewheel')($);
+	mousewheel = require('jquery-mousewheel')($),
+	audio = require("modules/audio");
 
 var controlScroll = module.exports = function( el ) {
 		var $el = $( el ),
@@ -59,7 +60,13 @@ var controlScroll = module.exports = function( el ) {
 					//console.log('op ' + op)
 					$('#color-overlay').css('opacity', op);
 					
-					//console.log('below window height');
+					var volume = op.toFixed(2) * 100;
+					
+					audio.setVolume('intro', 100 - volume);
+					audio.setVolume('introAfter', 100 - volume);
+					audio.setVolume('credits', volume);
+					//audio.setVolume('credits', 1 - volume);
+					
 					
 				} else {
 					//$('#color-overlay').css('opacity', 1);
@@ -90,6 +97,13 @@ var controlScroll = module.exports = function( el ) {
 				//console.log('at end of page')
 				
 				var op = ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height();
+				
+				
+				var volume = op.toFixed(2) * 100;
+				
+				audio.setVolume('intro', 100 - volume);
+				audio.setVolume('introAfter', 100 - volume);
+				audio.setVolume('credits', volume);
 				
 				//console.log(op);
 				
@@ -305,12 +319,14 @@ var controlScroll = module.exports = function( el ) {
 	
 		controlScroll.init = function(){
 			
+			audio.init();
 			
+			var timerSpeed = settings.isMobile ? 6000 : 30000;
 			
 			autoScrollTimer = setTimeout(function(){
 				autoScroll = true;
 				console.log('set autoscroll true')
-			}, 6000);
+			}, timerSpeed);
 			
 			
 			// Usage
@@ -322,7 +338,7 @@ var controlScroll = module.exports = function( el ) {
 				  if(autoScroll) {
 					  st++;
 					  //controlScroll.scroll(st);
-					  console.log(st);
+					  //console.log(st);
 					  controlScroll.scrollTo(st);
 					  //console.log('scroll')
 					  //$('input').blur();
@@ -427,6 +443,7 @@ var controlScroll = module.exports = function( el ) {
 			
 			//console.log( $('.video-1-clone').position().left )
 			
+			/*
 			$('.video-holder').each(function(){
 				if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $window.width() ) {
 					$(this).find('video')[0].play();
@@ -447,6 +464,7 @@ var controlScroll = module.exports = function( el ) {
 				  
 				
 			}
+			*/
 			
 			/*
 			if(xPos < -vidScrollWidth ) {

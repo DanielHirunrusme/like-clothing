@@ -10,25 +10,33 @@
 	display:none;
 	
 	.video-scroll {
-		//position:absolute;
+		//position:relative !important; 
 		left:0;
 		height:100%;
 		width:100000px;
 		pointer-events:none;
+		-webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+		backface-visibility: hidden;
+		-webkit-transform-style: preserve-3d;
+		//-webkit-perspective: 1000;
 		
 		.video-holder {
 			height:100%;
 			width:calc(100vh * 1.7777);
 			position:absolute;
 			left:100vw;
+			
 			&:first-child {
 				left:0;
 			}
 			video {
 				
-				
+				//display:none;
 				height:100%;
 				
+				&.playing {
+					display:block;
+				}
 				
 				//float:left;
 				//display:none;

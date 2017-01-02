@@ -365,7 +365,7 @@ var scrollLoop = module.exports = function( el ) {
 		function watchVideos(){
 			
 			//console.log( $('.video-1-clone').position().left )
-			
+			/*
 			$('.video-holder').each(function(){
 				if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $window.width() ) {
 					$(this).find('video')[0].play();
@@ -386,7 +386,7 @@ var scrollLoop = module.exports = function( el ) {
 				  
 				
 			}
-			
+			*/
 			/*
 			if(xPos < -vidScrollWidth ) {
 				xPos = 0;
