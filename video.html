@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blank HTML5</title>
+<style>
+
+body, html {
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+
+#video-container {
+	position:fixed;
+	left:0;
+	top:0;
+	width:100vw;
+	height:100%;
+	overflow:hidden;
+	overflow-x:scroll;
+}
+
+.video-scroll {
+	width:100vw;
+	height:100%;
+	overflow:hidden;
+}
+
+.video-holder {
+	height:100%;
+	position:absolute;
+}
+
+video {
+	height:100%;
+	display:block
+}
+
+</style>
+    </head>
+    <body>
+
+		<section id="video-container" data-module-init="videos">
+			<div class="video-scroll">
+				<div class="video-holder video-1">
+					<video id="video-1" src="assets/videos/c_1.mp4"  muted  autoplay loop playsinline></video>
+				</div>
+				<div class="video-holder">
+					<video id="video-2" src="assets/videos/c_2.mp4"  muted autoplay loop playsinline></video>
+				</div>
+				<div class="video-holder">
+					<video id="video-3" src="assets/videos/c_3.mp4"  muted autoplay  loop playsinline></video>
+				</div>
+				<div class="video-holder">
+					<video id="video-4" src="assets/videos/c_4.mp4"  muted autoplay loop playsinline></video>
+				</div>
+				<div class="video-holder">
+					<video id="video-5" src="assets/videos/c_5.mp4"  muted autoplay loop playsinline></video>
+				</div>
+				<div class="video-holder">
+					<video id="video-6" src="assets/videos/c_6.mp4"  muted autoplay loop playsinline></video>
+				</div>
+				<div class="video-holder video-7">
+					<video id="video-7" src="assets/videos/c_7.mp4"  muted autoplay loop playsinline></video>
+				</div>
+				<div class="video-holder video-8">
+					<video id="video-8" src="assets/videos/c_8.mp4"  muted autoplay loop playsinline></video>
+				</div>
+				
+				<div class="video-holder video-1-clone">
+					<video id="video-10" src="assets/videos/c_1.mp4"  muted  autoplay loop playsinline></video>
+				</div>
+			</div>
+	
+	
+	
+		</section>
+
+       <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+		<script src="jquery.mousewheel.min.js"></script>
+		<script src="AnimationFrame.min.js"></script>
+	    <script src="jquery.transit.js"></script>
+<script>
+		
+$(document).ready(function() {
+	
+	var AnimationFrame = window.AnimationFrame;
+	var videoWidth=0;
+	var xPos = 0;
+	
+	$('.video-holder').each(function(){
+		$(this).css('width', Math.floor($(window).height() * 1.777) ).css('left', $(this).width() * $(this).index());
+		videoWidth += $(this).width();
+	});
+	
+	
+	
+	$('.video-scroll').css('width', videoWidth);
+	
+	var animationFrame = new AnimationFrame();
+        
+		(function animate() {
+            animationFrame.request(function() {
+				render();
+                animate();
+            });
+        }());
+    
+	
+		function render(){
+			xPos += .2;
+			$('#video-container').scrollLeft(xPos);
+			//watchVideos();
+			/*
+			$('.video-scroll').css({
+			    "-webkit-transform":"translate("+xPos+"px,0)",
+			    "-ms-transform":"translate("+xPos+"px,0)",
+			    "transform":"translate("+xPos+"px,0)"});
+			*/
+		}
+	
+	$(window).on('mousewheel', function(e){
+		//console.log(e.deltaY);
+		if(e.deltaY <= 0) {
+			xPos -= e.deltaY;
+			watchVideos();
+		}
+		
+	});
+	
+	console.log(videoWidth);
+	
+	function watchVideos(){
+		
+		//console.log( $('.video-1-clone').position().left )
+		
+		$('.video-holder').each(function(){
+			if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $(window).width() ) {
+				if(!$(this).find('video').hasClass('playing')) {
+					$(this).find('video')[0].play();
+					//console.log('play ' + $(this).find('video').attr('src'))
+				}
+				$(this).find('video').addClass('playing');
+				
+			} else {
+				if($(this).find('video').hasClass('playing')){
+					//console.log('pause ' + $(this).find('video').attr('src'))
+					$(this).find('video').removeClass('playing');
+					$(this).find('video')[0].pause();
+				}
+				
+			}
+		});
+		
+		console.log($('#video-container').scrollLeft())
+		if($('#video-container').scrollLeft() >= videoWidth - $(window).width()) {
+			xPos = 0;
+			$('#video-container').scrollLeft(0);
+		}
+		
+		/*
+		//console.log($('.video-1-clone').position().left);
+		if( $('.video-1-clone').position().left <= 0 ) {
+			console.log('loop videos')
+			//$('.top-section.bottom-fixed').css('opacity', 0).removeClass('show');
+			xPos = 0;
+			xListener = 0;
+			$('#video-1').currentTime = $('#video-10')[0].currentTime;
+			
+			
+		}
+		*/
+	
+		
+		
+	}
+	
+});
+
+</script>
+    </body>
+</html>

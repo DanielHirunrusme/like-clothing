@@ -1,6 +1,7 @@
 var makeVideoPlayableInline = require('iphone-inline-video'),
 	settings = require('modules/settings'),
-	mousewheel = require('jquery-mousewheel')($);
+	mousewheel = require('jquery-mousewheel')($),
+	AnimationFrame = require('animation-frame');
 
 var videos = module.exports = function( el ) {
 		var $el = $( el ),
@@ -16,11 +17,12 @@ var videos = module.exports = function( el ) {
 		autoScroll = false,
 		last_position = {},
 		$scrollContainer = $('.wrapper'),
-		st;
+		st,
+		animationFrame = new AnimationFrame();
 
 		console.log('%c[video module init]', 'color:blue;');
 		
-		
+		 
 		function winMouseMove(event) {
 			//if(event)
 			
@@ -75,20 +77,12 @@ var videos = module.exports = function( el ) {
 
 			if(!settings.isMobile){
 				// Usage
-				animLoop(function( deltaT ) {
-					xPos -= .2;
-					xListener -= .2;
-					//$('.video-scroll').css('left', xPos);
-					
-					$('.video-scroll').css({
-					    "-webkit-transform":"translate3d("+xPos+"px,0,0)",
-					    "-ms-transform":"translate3d("+xPos+"px,0,0)",
-					    "transform":"translate3d("+xPos+"px,0,0)"
-					  });​
-					
-					  watchVideos();
-
-				} );
+				(function animate() {
+		            animationFrame.request(function() {
+						render();
+		                animate();
+		            });
+		        }());
 			}
 			
 			
@@ -107,10 +101,8 @@ var videos = module.exports = function( el ) {
 			
 		}
 		
+		
 		function watchVideos(){
-			
-			//console.log( $('.video-1-clone').position().left )
-			
 			$('.video-holder').each(function(){
 				if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $window.width() ) {
 					if(!$(this).find('video').hasClass('playing')) {
@@ -129,26 +121,11 @@ var videos = module.exports = function( el ) {
 				}
 			});
 			
-			//$('#video-1').currentTime = $('#video-8')[0].currentTime;
-			//console.log($('.video-1-clone').position().left)
-			if( $('.video-1-clone').position().left <= 0 ) {
-				console.log('loop videos')
-				
+			if($('#video-container').scrollLeft() >= vidScrollWidth - $(window).width()) {
 				xPos = 0;
-				xListener = 0;
-				$('#video-1').currentTime = $('#video-8')[0].currentTime;
-				$('.video-scroll').css({
-				    "-webkit-transform":"translate("+xPos+"px,0)",
-				    "-ms-transform":"translate("+xPos+"px,0)",
-				    "transform":"translate("+xPos+"px,0)"
-				  });​
-				  
-				
+				$('#video-container').scrollLeft(0);
 			}
-			
 		
-			
-			
 		}
 		
 		
@@ -156,6 +133,18 @@ var videos = module.exports = function( el ) {
 			event.stopPropagation();
 			
 			if(event.type == 'mousewheel') {
+				if(event.deltaY <= 0) {
+					xPos -= event.deltaY;
+					
+				}
+				if(event.deltaX >= 0) {
+					xPos += event.deltaX;
+				}
+				
+				console.log(event.deltaX )
+				
+				watchVideos();
+				/*
 				if(event.deltaY < 0) {
 					xPos += event.deltaY;
 					xListener += event.deltaY;
@@ -165,6 +154,7 @@ var videos = module.exports = function( el ) {
 					xPos -= event.deltaX;
 					xListener -= event.deltaX;
 				}
+				*/
 			} else if(event.type == 'touchmove') {
 				
 			} else {
@@ -175,34 +165,39 @@ var videos = module.exports = function( el ) {
 
 		});
 		
+		var animationFrame = new AnimationFrame();
+        
+		
+
+
+		function render(){
+			xPos += .2;
+			$('#video-container').scrollLeft(xPos);
+			//watchVideos();
+			/*
+			$('.video-scroll').css({
+			    "-webkit-transform":"translate("+xPos+"px,0)",
+			    "-ms-transform":"translate("+xPos+"px,0)",
+			    "transform":"translate("+xPos+"px,0)"});
+			*/
+		}
+		
 		function setVideos(){
 			vidScrollWidth = 0;
-			$('.video-holder').each(function(){
-				$(this).css('width', Math.floor($window.height() * 1.777)).css('left', Math.floor( $(this).width() * $(this).index()) );
-				vidScrollWidth += $(this).width(); 
-			});
-			$videoScroll.css('width', vidScrollWidth);
+			//$videoScroll.css('width', vidScrollWidth);
 			//console.log(vidScrollWidth);
+			
+			$('.video-holder').each(function(){
+				$(this).css('width', Math.floor($(window).height() * 1.777) ).css('left', $(this).width() * $(this).index());
+				vidScrollWidth += $(this).width();
+			});
+	
+	
+	
+			$('.video-scroll').css('width', vidScrollWidth);
 		}
 		
-		
-		function animLoop( render, element ) {
-		    var running, lastFrame = +new Date;
-		    function loop( now ) {
-		        // stop the loop if render returned false
-		        if ( running !== false ) {
-		            requestAnimationFrame( loop, element );
-		            running = render( now - lastFrame );
-		            lastFrame = now;
-		        }
-		    }
-		    loop( lastFrame );
-		}
 
-		
-		
-
-		
 		function winResize(){
 			$videoWidth = $('.video-holder').width();
 			setVideos();

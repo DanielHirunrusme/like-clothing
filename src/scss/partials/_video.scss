@@ -1,3 +1,4 @@
+/*
 #video-container {
 	position:fixed;
 	top:0;
@@ -15,10 +16,10 @@
 		height:100%;
 		width:100000px;
 		pointer-events:none;
-		-webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+
 		backface-visibility: hidden;
 		-webkit-transform-style: preserve-3d;
-		//-webkit-perspective: 1000;
+		-webkit-perspective: 1000;
 		
 		.video-holder {
 			height:100%;
@@ -32,7 +33,7 @@
 			video {
 				
 				//display:none;
-				height:100%;
+				height:100vh;
 				
 				&.playing {
 					display:block;
@@ -49,6 +50,44 @@
 	
 	
 }
+*/
+
+
+#video-container {
+	position:fixed;
+	left:0;
+	top:0;
+	width:100vw;
+	height:100%;
+	overflow:hidden;
+	overflow-x:scroll;
+	
+	.video-scroll {
+		width:100vw;
+		height:100%;
+		overflow:hidden;
+		
+		.video-holder {
+			height:100%;
+			position:absolute;
+			
+			video {
+				height:100%;
+				display:none;
+				
+				&.playing {
+					display:block;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
 
 #color-overlay {
 	background:$c-background;
