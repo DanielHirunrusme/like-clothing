@@ -152,7 +152,7 @@ var desktopScroll = module.exports = function( el ) {
 		
 		
 		$window.on('mousewheel touchmove', function(event){
-			console.log('mousewheel')
+			//console.log('mousewheel')
 			
 			if(event.type == 'mousewheel') {
 				if(event.deltaY < 0) {
@@ -173,10 +173,11 @@ var desktopScroll = module.exports = function( el ) {
 			
 			//console.log(event.type)
 			$('body').addClass('scrolling');
-			
+
 			clearTimeout($.data(this, 'timer'));
 			  $.data(this, 'timer', setTimeout(function() {
 				  $('body').removeClass('scrolling');
+				 
 			     //do something
 			  }, 250));
 			  
@@ -193,6 +194,8 @@ var desktopScroll = module.exports = function( el ) {
 			if(st >= $el.find('#scroller').height() - $window.height()) {
 				$('#wrapper').scrollTop(0)
 			}
+			
+			console.log(st)
 			
 			controlScroll.scroll( st );
 		}

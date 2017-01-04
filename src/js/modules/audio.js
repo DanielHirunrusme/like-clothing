@@ -31,7 +31,7 @@ var audio = module.exports = function( el ) {
 		      ready: function () {
 		        this.load('assets/audio/intro.mp3');
 		        this.play();
-				this.volume(0);
+				if(settings.isMute) this.volume(0);
 		      }
 		    });
 			
@@ -40,7 +40,7 @@ var audio = module.exports = function( el ) {
 		    introAfter = new Audio5js({
 		      ready: function () {
 		        this.load('assets/audio/intro-after.mp3');
-				this.volume(0);
+				if(settings.isMute) this.volume(0);
 		      }
 		    });
 			
@@ -60,30 +60,33 @@ var audio = module.exports = function( el ) {
 		function toggleAudio(){
 			$el.toggleClass('active');
 			
-			if(audioOn) {
+			if(!settings.isMute) {
 				audioOn = false;
+				settings.isMute = true;
 				fadeOut();
 			} else {
 				audioOn = true;
+				settings.isMute = false;
 				fadeIn();
 			}
 		}
 		
 		
 		audio.setVolume = function(instance, _volume) {
-			
+				//console.log('volume ' + _volume)
+				clearInterval(fadeInterval);
 				switch(instance) {
 				case 'intro':
 					introVol = _volume;
-					//if(audioOn) intro.volume(getVolPercent(_volume)); 
+					if(!settings.isMute) intro.volume(getVolPercent(_volume)); 
 					break;
 				case 'introAfter':
 					introAfterVol = _volume;
-					//if(audioOn) introAfter.volume(getVolPercent(_volume)); 
+					if(!settings.isMute) introAfter.volume(getVolPercent(_volume)); 
 					break;
 				case 'credits':
 					creditsVol = _volume;
-					//if(audioOn) credits.volume(getVolPercent(_volume)); 
+					if(!settings.isMute) credits.volume(getVolPercent(_volume)); 
 					break;
 				}
 			
@@ -91,33 +94,49 @@ var audio = module.exports = function( el ) {
 		}
 		
 		function fadeIn() {
+			if(settings.isMute) {
+				return true;
+			} 
+			
+			clearInterval(fadeInterval);
+			
+			var fadeInIntroVol = intro.volume() * 100,
+				fadeInIntroAfterVol = introAfter.volume() * 100,
+				fadeInCreditsVol = credits.volume() * 100;
 			
             fadeInterval = setInterval(function() { 
 				
 				if(intro.volume() < introVol) {
-					intro.volume(intro.volume() + 1)
+					fadeInIntroVol += 1;
+					//intro.volume(intro.volume() + 1)
 				} else {
-					intro.volume(introVol)
+					fadeInIntroVol = introVol;
+					//intro.volume(introVol)
 				}	
 			
 				if(introAfter.volume() < introAfterVol) {
-					introAfter.volume(introAfter.volume() + 1)
+					//introAfter.volume(introAfter.volume() + 1)
+					fadeInIntroAfterVol += 1;
 				} else {
-					intro.volume(introAfterVol)
+					//intro.volume(introAfterVol)
+					fadeInIntroAfterVol = introAfterVol;
 				}	
 			
 				if(credits.volume() < creditsVol) {
-					credits.volume(credits.volume() + 1)
+					//credits.volume(credits.volume() + 1)
+					fadeInCreditsVol += 1;
 				} else {
-					intro.volume(creditsVol)
+					//intro.volume(creditsVol)
+					fadeInCreditsVol = creditsVol;
 				}
 			
-				//console.log(introAfterVol)
-				//intro.volume(getVolPercent(introVol));
-				//introAfter.volume(getVolPercent(introAfterVol));
-				//credits.volume(getVolPercent(creditsVol));
+				console.log(fadeInIntroVol);
 				
-				if(intro.volume() == introVol && introAfter.volume() == introAfterVol && credits.volume() == creditsVol) {
+				intro.volume(getVolPercent(fadeInIntroVol));
+				introAfter.volume(getVolPercent(fadeInIntroAfterVol));
+				credits.volume(getVolPercent(fadeInCreditsVol));
+				
+				if(fadeInIntroVol == introVol && fadeInIntroAfterVol == introAfterVol && fadeInCreditsVol == creditsVol) {
 					//console.log('clear int')
 					clearInterval(fadeInterval);
 					return true;
@@ -130,32 +149,38 @@ var audio = module.exports = function( el ) {
 		
 		function fadeOut() {
 			
+			clearInterval(fadeInterval);
+			
+			var fadeIntroVol = intro.volume() * 100,
+				fadeIntroAfterVol = introAfter.volume() * 100,
+				fadeCreditsVol = credits.volume() * 100;
+			
             fadeInterval = setInterval(function() { 
 			
-				if(introVol > 0) {
-					introVol -= 1;
+				if(fadeIntroVol > 0) {
+					fadeIntroVol -= 1;
 				} else {
-					introVol = 0;
+					fadeIntroVol = 0;
 				}	
 			
-				if(introAfterVol > 0) {
-					introAfterVol -= 1;
+				if(fadeIntroAfterVol  > 0) {
+					fadeIntroAfterVol  -= 1;
 				} else {
-					introAfterVol = 0;
+					fadeIntroAfterVol  = 0;
 				}	
 			
-				if(creditsVol > 0) {
-					creditsVol -= 1;
+				if(fadeCreditsVol > 0) {
+					fadeCreditsVol -= 1;
 				} else {
-					creditsVol = 0;
+					fadeCreditsVol = 0;
 				}
 			
-				//console.log(introAfterVol)
-				intro.volume(getVolPercent(introVol));
-				introAfter.volume(getVolPercent(introAfterVol));
-				credits.volume(getVolPercent(creditsVol));
+				console.log( intro.volume() )
+				intro.volume(getVolPercent(fadeIntroVol));
+				introAfter.volume(getVolPercent(fadeIntroAfterVol));
+				credits.volume(getVolPercent(fadeCreditsVol));
 				
-				if(introVol == 0 && introAfterVol == 0 && creditsVol == 0) {
+				if(fadeIntroVol == 0 && fadeIntroAfterVol == 0 && fadeCreditsVol == 0) {
 					//console.log('clear int')
 					clearInterval(fadeInterval);
 					return true;
@@ -167,7 +192,9 @@ var audio = module.exports = function( el ) {
 		}
 		
 		function getVolPercent(_volume) {
-			return _volume / 100;
+			vol = _volume / 100;
+			vol = vol > 100 ? 100 : vol;
+			return vol;
 		}
 		
 	

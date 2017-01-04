@@ -30,6 +30,7 @@ var settings = module.exports = {
 	animating: false,
 	unique: true,
 	scroller: null,
+	isMute:false,
 	isMobile: checkMobile(),
 	page: '',
 };

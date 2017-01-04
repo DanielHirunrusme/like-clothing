@@ -61,6 +61,8 @@
 	height:100%;
 	overflow:hidden;
 	overflow-x:scroll;
+	pointer-events:none;
+	z-index:-1;
 	
 	.video-scroll {
 		width:100vw;
@@ -73,12 +75,13 @@
 			
 			video {
 				height:100%;
-				display:none;
+				//display:none;
 				
 				&.playing {
 					display:block;
 				}
 			}
+			
 		}
 	}
 }
@@ -100,5 +103,6 @@
 	height:100vh;
 	z-index:1;
 	@include opacity(0);
+	//display:none !important;
 }
 

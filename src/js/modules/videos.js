@@ -107,21 +107,25 @@ var videos = module.exports = function( el ) {
 				if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $window.width() ) {
 					if(!$(this).find('video').hasClass('playing')) {
 						$(this).find('video')[0].play();
-						console.log('play ' + $(this).find('video').attr('src'))
+						//console.log('play ' + $(this).find('video').attr('src'))
 					}
 					$(this).find('video').addClass('playing');
 					
 				} else {
 					if($(this).find('video').hasClass('playing')){
-						console.log('pause ' + $(this).find('video').attr('src'))
+						//console.log('pause ' + $(this).find('video').attr('src'))
 						$(this).find('video').removeClass('playing');
-						$(this).find('video')[0].pause();
+						//$(this).find('video')[0].pause();
 					}
 					
 				}
 			});
 			
-			if($('#video-container').scrollLeft() >= vidScrollWidth - $(window).width()) {
+			$('#video-1').currentTime = $('#video-10')[0].currentTime;
+			
+	
+			
+			if($('.video-1-clone').position().left <= 0) {
 				xPos = 0;
 				$('#video-container').scrollLeft(0);
 			}
@@ -141,7 +145,7 @@ var videos = module.exports = function( el ) {
 					xPos += event.deltaX;
 				}
 				
-				console.log(event.deltaX )
+				//console.log(event.deltaX )
 				
 				watchVideos();
 				/*

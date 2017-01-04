@@ -30,6 +30,12 @@ var controlScroll = module.exports = function( el ) {
 			//console.log(st);
 			this.fadeOverlay();
 			this.checkScrollPos();
+			clearTimeout($.data(this, 'timer'));
+			  $.data(this, 'timer', setTimeout(function() {
+				console.log('timer check fade')
+	  			controlScroll.fadeOverlay();
+	  			controlScroll.checkScrollPos();
+			  }, 250));
 		}
 		
 		controlScroll.scrollTo = function(y) {
@@ -69,7 +75,33 @@ var controlScroll = module.exports = function( el ) {
 					
 					
 				} else {
-					//$('#color-overlay').css('opacity', 1);
+					if(st >= $scrollContainer[0].scrollHeight - ($window.height() * 2 ) ) {
+						//console.log( ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height()  )
+						//console.log( $scrollContainer[0].scrollHeight / (st + $window.height()) )
+						//console.log($scrollContainer[0].scrollHeight);
+						//console.log(st + $window.height());
+						//console.log( ( $scrollContainer[0].scrollHeight - st  )/ $window.height()  )
+						//console.log( ($scrollContainer[0].scrollHeight - st) / ( $scrollContainer[0].scrollHeight - $window.height()) )
+				
+						//console.log('at end of page')
+				
+						var op = ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height();
+				
+				
+						var volume = op.toFixed(2) * 100;
+				
+						audio.setVolume('intro', 100 - volume);
+						audio.setVolume('introAfter', 100 - volume);
+						audio.setVolume('credits', volume);
+				
+						//console.log(op);
+				
+						$('#color-overlay').css('opacity', op);
+						$('.top-section.bottom-fixed').addClass('show').css('opacity', 1 - op);
+					} else {
+						$('#color-overlay').css('opacity', 1);
+						$('.top-section.bottom-fixed').removeClass('show').css('opacity', 0);
+					}
 				}
 			} else {
 				if( st < $window.height() * 2) {
@@ -86,30 +118,7 @@ var controlScroll = module.exports = function( el ) {
 				}
 			}
 			
-			if(st >= $scrollContainer[0].scrollHeight - ($window.height() * 2 ) ) {
-				//console.log( ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height()  )
-				//console.log( $scrollContainer[0].scrollHeight / (st + $window.height()) )
-				//console.log($scrollContainer[0].scrollHeight);
-				//console.log(st + $window.height());
-				//console.log( ( $scrollContainer[0].scrollHeight - st  )/ $window.height()  )
-				//console.log( ($scrollContainer[0].scrollHeight - st) / ( $scrollContainer[0].scrollHeight - $window.height()) )
-				
-				//console.log('at end of page')
-				
-				var op = ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height();
-				
-				
-				var volume = op.toFixed(2) * 100;
-				
-				audio.setVolume('intro', 100 - volume);
-				audio.setVolume('introAfter', 100 - volume);
-				audio.setVolume('credits', volume);
-				
-				//console.log(op);
-				
-				$('#color-overlay').css('opacity', op);
-				$('.top-section.bottom-fixed').addClass('show').css('opacity', 1 - op);
-			}
+			
 		}
 		
 		
@@ -274,6 +283,7 @@ var controlScroll = module.exports = function( el ) {
 			clearTimeout($.data(this, 'timer'));
 			  $.data(this, 'timer', setTimeout(function() {
 				  $('body').removeClass('scrolling');
+				  
 			     //do something
 			  }, 250));
 			  
