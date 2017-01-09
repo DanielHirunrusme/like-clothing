@@ -67,20 +67,16 @@ video {
 				<div class="video-holder video-8">
 					<video id="video-8" src="assets/videos/c_8.mp4"  muted autoplay loop playsinline></video>
 				</div>
-				
 				<div class="video-holder video-1-clone">
 					<video id="video-10" src="assets/videos/c_1.mp4"  muted  autoplay loop playsinline></video>
 				</div>
 			</div>
-	
-	
-	
 		</section>
 
-       <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-		<script src="jquery.mousewheel.min.js"></script>
-		<script src="AnimationFrame.min.js"></script>
-	    <script src="jquery.transit.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="jquery.mousewheel.min.js"></script>
+<script src="AnimationFrame.min.js"></script>
+<script src="jquery.transit.js"></script>
 <script>
 		
 $(document).ready(function() {
@@ -132,47 +128,11 @@ $(document).ready(function() {
 	console.log(videoWidth);
 	
 	function watchVideos(){
-		
-		//console.log( $('.video-1-clone').position().left )
-		
-		$('.video-holder').each(function(){
-			if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $(window).width() ) {
-				if(!$(this).find('video').hasClass('playing')) {
-					$(this).find('video')[0].play();
-					//console.log('play ' + $(this).find('video').attr('src'))
-				}
-				$(this).find('video').addClass('playing');
-				
-			} else {
-				if($(this).find('video').hasClass('playing')){
-					//console.log('pause ' + $(this).find('video').attr('src'))
-					$(this).find('video').removeClass('playing');
-					$(this).find('video')[0].pause();
-				}
-				
-			}
-		});
-		
-		console.log($('#video-container').scrollLeft())
+
 		if($('#video-container').scrollLeft() >= videoWidth - $(window).width()) {
 			xPos = 0;
 			$('#video-container').scrollLeft(0);
 		}
-		
-		/*
-		//console.log($('.video-1-clone').position().left);
-		if( $('.video-1-clone').position().left <= 0 ) {
-			console.log('loop videos')
-			//$('.top-section.bottom-fixed').css('opacity', 0).removeClass('show');
-			xPos = 0;
-			xListener = 0;
-			$('#video-1').currentTime = $('#video-10')[0].currentTime;
-			
-			
-		}
-		*/
-	
-		
 		
 	}
 	
