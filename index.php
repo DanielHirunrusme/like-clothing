@@ -27,6 +27,25 @@ $mobile = true;
 <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<!-- META -->
+<link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="assets/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="assets/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="assets/images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+<link rel="manifest" href="assets/images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="assets/images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
 </head>
 <body data-module-init="body" class="<?php if($mobile) { echo 'mobile-device'; } else { echo 'desktop-device'; } ?>">
 
@@ -154,7 +173,7 @@ $mobile = true;
 			<li><h4>Original Score</h4><h5><a href="http://michaelbeharie.com/" title="Michael Beharie" target="_blank">Michael Beharie<span class="url-icon">URL</span></a></h5></li>
 			<li><h4>Sound Mix</h4><h5><a href="https://vimeo.com/sashamandel" title="Sasha Mandel" target="_blank">Sasha Mandel<span class="url-icon">URL</span></a></h5></li>
 			<li><h4>VFX</h4><h5>Jae Won Lee</h5></li>
-			<li><h4>Hair &amp; Make-Up</h4><h5><a href="http://rachaelghorbani.com/" title="Raechel Gorbani" target="_blank">Raechel Gorbani<span class="url-icon">URL</span></a></h5></li>
+			<li><h4>Hair &amp; Make-Up</h4><h5><a href="http://rachaelghorbani.com/" title="Rachael Ghorbani" target="_blank">Rachael Ghorbani<span class="url-icon">URL</span></a></h5></li>
 			<li><h4>Set Design</h4><h5>Ben Tear</h5></li>
 			<li><h4>Main Title Typeface</h4><h5>Ann0 by <a href="http://rafrennie.com/" title="Raf Rennie" target="_blank">Raf Rennie<span class="url-icon">URL</span></a></h5></li>
 		</ul>
@@ -171,7 +190,7 @@ $mobile = true;
 	
 	<section class="information">
 		<article>
-			<p><b>Like Clothing</b> is launching a new collection and fashion &#xFB01;lm in collaboration with painter Eric Mack <a href="http://moranbondaroff.com/artists/eric-mack/" target="_blank">MORAN BONDAROFF</a> <a href="http://www.alminerech.com/artists/3600-eric-mack" target="_blank">ALMINE RECH</a> <a href="http://momaps1.org/exhibitions/view/403" target="_blank">MOMA PS1</a>. This Collection &ldquo;Paint Two,&rdquo; is their third collaboration including the previous collection, &ldquo;Paint&rdquo; and an editorial for Talk Magazine&nbsp;<a href="http://talk-is.cheap/" target="_blank">URL</a> with photographer David Brandon Geeting&nbsp;<a href="http://www.dbg.nyc/" target="_blank">URL</a>.</p>
+			<p><b>Like Clothing</b> is launching a new collection and fashion &#xFB01;lm in collaboration with painter Eric Mack <a href="http://moranbondaroff.com/artists/eric-mack/" target="_blank">MORAN BONDAROFF</a> <a href="http://www.alminerech.com/artists/3600-eric-mack" target="_blank">ALMINE RECH</a> <a href="http://momaps1.org/exhibitions/view/403" target="_blank">MOMA PS1</a>. This collection &ldquo;Paint Two,&rdquo; is their third collaboration including the previous collection, &ldquo;Paint&rdquo; and an editorial for Talk Magazine&nbsp;<a href="http://talk-is.cheap/" target="_blank">URL</a> with photographer David Brandon Geeting&nbsp;<a href="http://www.dbg.nyc/" target="_blank">URL</a>.</p>
 		</article>
 		
 		<article class="kits">
@@ -340,7 +359,7 @@ $mobile = true;
 		
 		
 		<article>
-			<p><b>&ldquo;What Are We Doing Tonight,&rdquo;,</b> is a 10-min fashion sitcom in &#xFB01;ve scenes conceived by art <span class="amp">&amp;</span> design director Harry Gassel <a href="http://talk-is.cheap/" title="Talk Magazine" target="_blank">TALK</a> <a href="http://www.documentjournal.com/" target="_blank">DOCUMENT</a> <a href="http://www.thefader.com/2013/11/22/what-were-reading-harry-gassel" target="_blank">THE FADER</a> produced in collaboration with Like Clothing. The &#xFB01;lm, directed by multimedia artist Pepi Ginsberg <a href="http://www.n-a-r-c.com/" target="_blank">N-A-R-C</a> <a href="https://vimeo.com/pepiginsberg" target="_blank">THE BLUE DOT</a> <a href="http://www.npr.org/templates/story/story.php?storyId=90449506"> THE WATERLINE</a> with &#xFB01;lmmaker Eric Yue <a href="https://vimeo.com/91617742" target="_blank">RATKING’S CANAL</a> <a href="https://vimeo.com/107283694" target="_blank">A.P.C.</a> as director of photography, includes an original score by composer <span class="amp">&amp;</span> guitarist Michael Beharie <a href="http://astronauti.co/michael-beharie-ray-like-morning-astr032/" target="_blank">ASTRO NAUTICO</a> <a href="http://www.thefader.com/2016/04/26/michael-beharie-long-time" target="_blank">THE FADER</a> <a href="https://thump.vice.com/en_us/track/michael-beharie-a-stone-stream" target="_blank">THUMP</a>. &ldquo;What Are We Doing Tonight&rdquo; stars actor <span class="amp">&amp;</span> singer Ato Blankson-Wood <a href="http://www.nytimes.com/2016/05/26/theater/review-in-the-total-bent-a-father-son-rift-and-a-sensational-score.html" target="_blank">THE TOTAL BENT</a> and model Lauren Perlman&nbsp;<a href="http://www.vogue.com/fashion-shows/spring-2017-ready-to-wear/rachel-comey/slideshow/collection#16" target="_blank">VOGUE</a>. The lookbook features photography by Matthew Tammaro <a href="http://www.newyorker.com/magazine/2016/06/20/mitski-miyawaki-and-chicago-rappers" target="_blank">NEW YORKER</a> <a href="http://www.thefader.com/2015/04/28/trans-identifying-persons-model-spring-fashion-and-talk-shopping" target="_blank">THE FADER</a> <a href="http://hellomrmag.com/popeye2016/" target="_blank">POPEYE</a> and hair and makeup by Rachael Ghorbani&nbsp;<a href="https://www.frankieandclo.com/rachaelghorbani/" target="_blank">FRANKIE + CLO</a>.
+			<p><b>What Are We Doing Tonight</b>, is a 10-min fashion sitcom in &#xFB01;ve scenes conceived by art <span class="amp">&amp;</span> design director Harry Gassel <a href="http://talk-is.cheap/" title="Talk Magazine" target="_blank">TALK</a> <a href="http://www.documentjournal.com/" target="_blank">DOCUMENT</a> <a href="http://www.thefader.com/2013/11/22/what-were-reading-harry-gassel" target="_blank">THE FADER</a> produced in collaboration with Like Clothing. The &#xFB01;lm, directed by multimedia artist Pepi Ginsberg <a href="http://www.n-a-r-c.com/" class="no-wrap" target="_blank">N-A-R-C</a> <a href="https://vimeo.com/pepiginsberg" target="_blank">THE BLUE DOT</a> <a href="http://www.npr.org/templates/story/story.php?storyId=90449506" target="_blank"> THE WATERLINE</a> with &#xFB01;lmmaker Eric Yue <a href="https://vimeo.com/91617742" target="_blank">RATKING’S CANAL</a> <a href="https://vimeo.com/107283694" target="_blank">A.P.C.</a> as director of photography, includes an original score by composer <span class="amp">&amp;</span> guitarist Michael Beharie <a href="http://astronauti.co/michael-beharie-ray-like-morning-astr032/" target="_blank">ASTRO NAUTICO</a> <a href="http://www.thefader.com/2016/04/26/michael-beharie-long-time" target="_blank">THE FADER</a> <a href="https://thump.vice.com/en_us/track/michael-beharie-a-stone-stream" target="_blank">THUMP</a>. &ldquo;What Are We Doing Tonight&rdquo; stars actor <span class="amp">&amp;</span> singer Ato Blankson-Wood <a href="http://www.nytimes.com/2016/05/26/theater/review-in-the-total-bent-a-father-son-rift-and-a-sensational-score.html" target="_blank">THE TOTAL BENT</a> and model Lauren Perlman&nbsp;<a href="http://www.vogue.com/fashion-shows/spring-2017-ready-to-wear/rachel-comey/slideshow/collection#16" target="_blank">VOGUE</a>. The lookbook features photography by Matthew Tammaro <a href="http://www.newyorker.com/magazine/2016/06/20/mitski-miyawaki-and-chicago-rappers" target="_blank">NEW YORKER</a> <a href="http://www.thefader.com/2015/04/28/trans-identifying-persons-model-spring-fashion-and-talk-shopping" target="_blank">THE FADER</a> <a href="http://hellomrmag.com/popeye2016/" target="_blank">POPEYE</a> and hair and makeup by Rachael Ghorbani&nbsp;<a href="https://www.frankieandclo.com/rachaelghorbani/" target="_blank">FRANKIE + CLO</a>.
 			</p>
 		</article>
 		
@@ -417,7 +436,7 @@ $mobile = true;
 	
 	<h2 class="collection-callout">A new collection and &#xFB01;lm<br>February, 2016</h2>
 	
-	<form class="newsletter" action="#" data-module-init="form" action="https://like-clothing.us14.list-manage.com/subscribe/post" method="post">
+	<form class="newsletter" data-module-init="form" action="https://like-clothing.us14.list-manage.com/subscribe/post" method="post">
 		<input type="email" class="bottom-input" placeholder="Email Address" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="">
 		<button type="submit" class="button--submit" data-audio="LaughterCrowd_AR03_44.wav" data-module-init="audio-hover">Subscribe</button>
 	</form>

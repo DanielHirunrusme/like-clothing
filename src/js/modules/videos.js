@@ -99,7 +99,7 @@ var videos = module.exports = function( el ) {
 			} else {
 				
 			}
-			
+			 
 		}
 		
 		function nextVideo(vidContainer) {

@@ -216,7 +216,7 @@ var desktopScroll = module.exports = function( el ) {
 				var _x = event.pageX;
 				var _y = event.pageY;
 	
-				if( (_x >= $('input').position().left) && (_x <= $('input').position().left + $('input').outerWidth()) && (_y >= $('input').position().top) && (_y <= $('input').position().top + $('input').outerHeight()) )
+				if( (_x >= $('.bottom-input').position().left) && (_x <= $('.bottom-input').position().left + $('.bottom-input').outerWidth()) && (_y >= $('.bottom-input').position().top) && (_y <= $('.bottom-input').position().top + $('.bottom-input').outerHeight()) )
 				{
 					$scrollContainer.scrollTop(0);
 					$('input.top-input').focus();
@@ -242,7 +242,7 @@ var desktopScroll = module.exports = function( el ) {
 			var _x = event.pageX;
 			var _y = event.pageY;
 
-			testOver(_x, _y, $('input'), 'text');
+			testOver(_x, _y, $('.bottom-input'), 'text');
 			testOver(_x, _y, $('.button--submit'), 'pointer');
 		}
 

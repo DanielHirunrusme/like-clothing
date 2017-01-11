@@ -65,6 +65,11 @@
 		
 		input {
 			text-transform:none;
+			min-width:140px;
+			
+			@include respond-to(mobile-portrait) {
+				width:140px;
+			}
 		}
 		
 		button {
@@ -85,6 +90,20 @@
 	z-index:3;
 	display:none; 
 	@include opacity(0);
+	
+	form {
+		input, button {
+			    padding: 0 1em;
+		}
+		
+		input {
+			min-width:140px;
+			
+			@include respond-to(mobile-portrait) {
+				width:140px;
+			}
+		}
+	}
 }
 
 .top-section.bottom-fixed.show {
