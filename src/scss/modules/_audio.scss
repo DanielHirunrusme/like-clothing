@@ -6,23 +6,85 @@
 	padding:3vw 2vw;
 	//width:72px;
 	z-index:5;
-	@include opacity(.4);
+	//@include opacity(.4);
+	
+	svg {
+		width: 27px;
+		
+		&:first-child {
+			display:none;
+		}
+		
+		&:last-child {
+			display:block;
+		}
+	}
+	
+	@include respond-to(mobile-portrait) {
+		padding:3vw;
+		
+		svg {
+			width:20px;
+		}
+	}
 	
 	&:hover {
-		@include opacity(.4);
+		//@include opacity(.4);
+		
+		
+		
+		svg:first-child {
+			display:block;
+		}
+		
+		svg:last-child {
+			display:none;
+		}
+		
+		@include respond-to(mobile-portrait) {
+			svg:first-child {
+				display:none;
+			}
+		
+			svg:last-child {
+				display:block;
+			}
+		}
+		
+		@include respond-to(mobile-landscape) {
+			svg:first-child {
+				display:none;
+			}
+		
+			svg:last-child {
+				display:block;
+			}
+		}
 	}
 	
 	&.active {
-		@include opacity(1);
+		//@include opacity(1);
+		svg:first-child {
+			display:block;
+		}
+		
+		svg:last-child {
+			display:none;
+		}
 	}
 	
 	&.active:hover {
-		@include opacity(.4);
+		//@include opacity(.4);
+		svg:first-child {
+			display:block;
+		}
+		
+		svg:last-child {
+			display:none;
+		}
 	}
 	
-	svg {
-		width: 25px;
-	}
+	
 }
 
 .landscape-format {

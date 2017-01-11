@@ -1,16 +1,23 @@
+.landscape-format .credits {
+	width:95%;
+	max-width:95%;
+}
 .credits {
+	
+	width:95%;
+	max-width:95%;
 	
 	ul {
 		//@include flexbox;
 		//@include flex-direction(column);
 		margin:0;
 		padding:0;
-		padding-top:5vw;
+		margin-top:$g-lr-margin * 2;
 		width:100%;
-		display:table;
+		//display:table;
 		
 		li {
-			display:inline-table;
+			@include flexbox;
 			//@include flexbox;
 			//@include flex-direction(row);
 			//@include justify-content(space-between);
@@ -21,7 +28,10 @@
 			vertical-align:bottom;
 			
 			@include respond-to(mobile-portrait) {
-				padding-bottom:2vw;
+				padding-bottom:3vw;
+				@include flex-direction(column);
+				@include justify-content(center);
+				@include align-items(center);
 			}
 			
 			h4, h5 {
@@ -37,25 +47,60 @@
 			
 			h4 {
 				text-align:right;
-				line-height:1.85;
+				@include flexbox;
+				@include justify-content(flex-end);
+				@include align-items(flex-end);
 				margin-right:1%;
+				height:3.5vw;
 				
 				@include respond-to(mobile-portrait) {
 					text-align:center;
 					margin-right:0;
+					display:block;
+					margin-bottom:.2em;
 				}
 			}
 			
 			h5 {
 				text-align:left;
 				margin-left:1%;
+				//margin-bottom: -.07em;
+				position:relative;
 				
 				@include respond-to(mobile-portrait) {
 					text-align:center;
 					margin-left:0;
+					margin-bottom:0;
+				}
+				
+				a {
+					position:relative;
+					
+					&:hover {
+						
+						.url-icon {
+							border-color:transparent;
+						}
+					}
 				}
 			}
 		}
 	}
 	
+}
+
+
+.landscape-format {
+	.credits {
+		ul {
+			li {
+				h4 {
+					@include flexbox;
+					@include justify-content(flex-end);
+					text-align:right;
+					height:5.6vh;
+				}
+			}
+		}
+	}
 }

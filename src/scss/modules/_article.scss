@@ -1,8 +1,15 @@
-main {
-	width: 88.56vw;
+article {
+	width:88%;
 	margin:0 auto;
 	
 	@include respond-to(mobile-portrait) {
-		width: 82.56vw;
+		width:90%;
 	}
 }
+
+.landscape-format {
+	article {
+		max-width:1200px;
+	}
+}
+

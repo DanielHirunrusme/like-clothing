@@ -7,6 +7,7 @@ var audio = module.exports = function( el ) {
 		var $el = $( el ),
 		$window = $( window ),
 		intro,
+		introEnded = false,
 		audioOn = true,
 		introAfter,
 		vol = 100,
@@ -17,29 +18,40 @@ var audio = module.exports = function( el ) {
 		introVolTemp  = 100,
 		introAfterVolTemp = 100,
 		creditsVolTemp = 0,
-		fadeInterval;
+		fadeInterval,
+		init = false;
+		init_1 = false, init_2 = false, init_3 = false;
 		
 		$el.on('click', toggleAudio);
 		
 		audio.init = function(){
 			$window.on('resize', winResize);
-			initAudio();
+			if(!settings.isMobile) {
+				initAudio();
+			}
 		}
 		
 		function initAudio () {
+			
+
+			
 		    intro = new Audio5js({
 		      ready: function () {
 		        this.load('assets/audio/intro.mp3');
 		        this.play();
+				init_1 = true;
+				if(init_1 && init_2 && init_3) init = true;
 				if(settings.isMute) this.volume(0);
 		      }
 		    });
 			
-			intro.on('ended', function () { introAfter.play(); }, this);
+			intro.on('ended', function () { introEnded = true; introAfter.play(); }, this);
 			
 		    introAfter = new Audio5js({
 		      ready: function () {
 		        this.load('assets/audio/intro-after.mp3');
+				init_2 = true;
+				if(init_1 && init_2 && init_3) init = true;
 				if(settings.isMute) this.volume(0);
 		      }
 		    });
@@ -49,7 +61,9 @@ var audio = module.exports = function( el ) {
 		   credits = new Audio5js({
 		      ready: function () {
 		        this.load('assets/audio/credits.mp3');
-				this.play();
+				if(!settings.isMobile)this.play();
+				init_3 = true;
+				if(init_1 && init_2 && init_3) init = true;
 				this.volume(0);
 		      }
 		    });
@@ -60,24 +74,53 @@ var audio = module.exports = function( el ) {
 		function toggleAudio(){
 			$el.toggleClass('active');
 			
+			if(!init && settings.isMobile) {
+				initAudio();
+				return false;
+			} 
+			
+			
+			
 			if(!settings.isMute) {
 				audioOn = false;
 				settings.isMute = true;
-				fadeOut();
+				
+				if(!settings.isMobile) {
+					fadeOut();
+				} else {
+					intro.pause();
+					introAfter.pause();
+					credits.pause();
+				}
+				
 			} else {
 				audioOn = true;
 				settings.isMute = false;
-				fadeIn();
+				
+				if(!settings.isMobile) {
+					fadeIn();
+				} else {
+					if(!introEnded) {
+						intro.play();
+					} else {
+						introAfter.play();
+					}
+					
+					//credits.play();
+				}
+				
 			}
 		}
 		
 		
 		audio.setVolume = function(instance, _volume) {
-				//console.log('volume ' + _volume)
-				clearInterval(fadeInterval);
+				if(!init) return false;
+				console.log('volume ' + _volume)
+				if(!settings.isMute) clearInterval(fadeInterval);
 				switch(instance) {
 				case 'intro':
 					introVol = _volume;
+					console.log(settings.isMute)
 					if(!settings.isMute) intro.volume(getVolPercent(_volume)); 
 					break;
 				case 'introAfter':

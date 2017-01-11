@@ -64,6 +64,8 @@
 	pointer-events:none;
 	z-index:-1;
 	
+	
+	
 	.video-scroll {
 		width:100vw;
 		height:100%;
@@ -74,7 +76,14 @@
 			position:absolute;
 			
 			video {
+				position:absolute;
+				left:0;
+				top:0;
 				height:100%;
+				
+				&.active {
+					z-index:3;
+				}
 				//display:none;
 				
 				&.playing {
@@ -87,6 +96,15 @@
 }
 
 
+.mobile-device {
+	video {
+		height:100%;
+		
+		@include respond-to(mobile-portrait) {
+			margin-left:-30vw;
+		}
+	}
+}
 
 
 

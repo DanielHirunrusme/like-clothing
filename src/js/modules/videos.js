@@ -71,7 +71,8 @@ var videos = module.exports = function( el ) {
 			}
 			
 			setVideos();
-		
+			switchVideos();
+			
 			$('#video-container').fadeIn(6000);
 			
 
@@ -101,6 +102,57 @@ var videos = module.exports = function( el ) {
 			
 		}
 		
+		function nextVideo(vidContainer) {
+	
+			var vidLength = $(vidContainer).find('video').length;
+			
+			for(var i=0; i<vidLength; i++) {
+				if($(vidContainer).find('video').eq(i).hasClass('active')){
+					$(vidContainer).find('video').eq(i).removeClass('active');
+					
+					var targ = i + 1 < vidLength ? i + 1 : 0;
+					
+					$(vidContainer).find('video').eq(targ)[0].play();
+					$(vidContainer).find('video').eq(targ).addClass('active');
+					break;
+					//$(vidContainer).find('video').eq(i + 1)[0].currentTime = .01;
+					
+				}
+			}
+			
+			$(vidContainer).find('video').each(function(){
+				if($(this).hasClass('active')){
+					var ind = $(this).index();
+					console.log('index ' + ind);
+					//$(this).removeClass('active');
+					//$(vidContainer).find('video').eq(ind + 1).addClass('active');
+				}
+			});
+		}
+		
+		function switchVideos(){
+			$('video').each(function(){
+				$(this).attr('data-loaded', 'not-loaded');
+			});
+			
+			$('video').on("timeupdate", function(e) {
+				var vid = $(this).get(0);
+				if(vid.currentTime == 0) {
+					$(this)[0].currentTime = 0.1;
+					$(this)[0].pause();
+					console.log('looped');
+					nextVideo($(this).parent());
+				}
+			});
+			
+			$('video').bind('loadeddata', function(e) {
+			  $(this).get(0).currentTime = 0.1;
+			  console.log($(this).attr('data-loaded', 'loaded'))
+			});
+			
+
+		}
+		
 		
 		function watchVideos(){
 			$('.video-holder').each(function(){
@@ -121,7 +173,7 @@ var videos = module.exports = function( el ) {
 				}
 			});
 			
-			$('#video-1').currentTime = $('#video-10')[0].currentTime;
+			//$('#video-1').currentTime = $('#video-10')[0].currentTime;
 			
 	
 			
@@ -192,7 +244,7 @@ var videos = module.exports = function( el ) {
 			//console.log(vidScrollWidth);
 			
 			$('.video-holder').each(function(){
-				$(this).css('width', Math.floor($(window).height() * 1.777) ).css('left', $(this).width() * $(this).index());
+				$(this).css('width', Math.floor($(window).height() * 1.745) ).css('left', $(this).width() * $(this).index());
 				vidScrollWidth += $(this).width();
 			});
 	

@@ -9,22 +9,38 @@ var audioHover = module.exports = function( el ) {
 		ready = false,
 		playing = false,
 		audio,
-		audioVol = 100;
+		audioVol = 100,
+		fadeInterval;
 		
 		$el.on('mouseover', elOver).on('mouseout', elOut);
 		
+		$('#audio').on('click', toggleAudio);
+		
 		function elOver(){
 			if(ready && !playing && !settings.isMute) {
+				 //fadeIn();
+				 clearInterval(fadeInterval);
 				 audioVol = 100;
 				 audio.volume(100);
+				 console.log('play SFX')
+				 console.log(audioVol)
+				 audio.seek(0);
 				 audio.play();
-				 playing = true;
 			 }
 		}
 		
 		function elOut(){
 			//if(ready)
+			playing = false;
 			fadeOut();
+		}
+		
+		function toggleAudio(){
+			if(settings.isMute) {
+				fadeOut();
+			} else {
+				fadeIn();
+			}
 		}
 		
 		function initAudio () {
@@ -44,14 +60,43 @@ var audioHover = module.exports = function( el ) {
 
 		}
 		
+		function fadeIn() {
+			
+			clearInterval(fadeInterval);
+			
+            fadeInterval = setInterval(function() { 
+			
+				if(audioVol < 100) {
+					audioVol += 1;
+				} else {
+					audioVol = 100;
+				}	
+			
+				
+				audio.volume(getVolPercent(audioVol));
+				
+				if(audioVol == 100) {
+					//console.log('clear int')
+					clearInterval(fadeInterval);
+					playing = true;
+					return true;
+				}	
+			
+			}, 16);
+			
+			
+		}
+		
 		function fadeOut() {
+			
+			clearInterval(fadeInterval);
 			
             fadeInterval = setInterval(function() { 
 			
 				if(audioVol > 0) {
 					audioVol -= 1;
 				} else {
-					iaudioVol = 0;
+					audioVol = 0;
 				}	
 			
 				

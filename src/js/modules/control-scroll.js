@@ -17,7 +17,8 @@ var controlScroll = module.exports = function( el ) {
 		autoScroll = false,
 		last_position = {},
 		$scrollContainer = $('.wrapper'),
-		st = 0;
+		st = 0,
+		timerSpeed;
 
 		console.log('%c[control-scroll module init]', 'color:blue;');
 		
@@ -65,8 +66,9 @@ var controlScroll = module.exports = function( el ) {
 					var op = (st / $window.height()) * 1;
 					//console.log('op ' + op)
 					$('#color-overlay').css('opacity', op);
-					
+					$('.bottom-section').css('opacity', 1);
 					var volume = op.toFixed(2) * 100;
+					
 					
 					audio.setVolume('intro', 100 - volume);
 					audio.setVolume('introAfter', 100 - volume);
@@ -75,7 +77,7 @@ var controlScroll = module.exports = function( el ) {
 					
 					
 				} else {
-					if(st >= $scrollContainer[0].scrollHeight - ($window.height() * 2 ) ) {
+					if(st >= $scrollContainer[0].scrollHeight - ($window.height() * 4 ) ) {
 						//console.log( ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height()  )
 						//console.log( $scrollContainer[0].scrollHeight / (st + $window.height()) )
 						//console.log($scrollContainer[0].scrollHeight);
@@ -85,7 +87,7 @@ var controlScroll = module.exports = function( el ) {
 				
 						//console.log('at end of page')
 				
-						var op = ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height();
+						var op = ( $scrollContainer[0].scrollHeight - st  - ( $window.height() )  )/$window.height() ;
 				
 				
 						var volume = op.toFixed(2) * 100;
@@ -93,12 +95,15 @@ var controlScroll = module.exports = function( el ) {
 						audio.setVolume('intro', 100 - volume);
 						audio.setVolume('introAfter', 100 - volume);
 						audio.setVolume('credits', volume);
-				
+						
+						var op_2 = ( $scrollContainer[0].scrollHeight - st  - ( $window.height() ) )/($window.height() * 2);
+						
 						//console.log(op);
-				
+						$('.bottom-section').css('opacity', op_2);
 						$('#color-overlay').css('opacity', op);
 						$('.top-section.bottom-fixed').addClass('show').css('opacity', 1 - op);
 					} else {
+						$('.bottom-section').css('opacity', 1);
 						$('#color-overlay').css('opacity', 1);
 						$('.top-section.bottom-fixed').removeClass('show').css('opacity', 0);
 					}
@@ -224,6 +229,7 @@ var controlScroll = module.exports = function( el ) {
 		*/
 		
 		controlScroll.stopAutoScroll = function(){
+			
 			clearInterval(scrollInt);
 			$('body').removeClass('autoScroll');
 			setTimeout(function(){ $('body').removeClass('scrolling autoScroll'); }, 100);
@@ -231,7 +237,7 @@ var controlScroll = module.exports = function( el ) {
 			clearTimeout(autoScrollTimer);
 			autoScrollTimer = setTimeout(function(){
 				autoScroll = true;
-			}, 10000);
+			}, timerSpeed);
 		}
 		
 		function startAutoScroll(){
@@ -330,8 +336,10 @@ var controlScroll = module.exports = function( el ) {
 		controlScroll.init = function(){
 			
 			audio.init();
+			winResize();
 			
-			var timerSpeed = settings.isMobile ? 6000 : 30000;
+			timerSpeed = settings.isMobile ? 6000 : 30000;
+			$window.on('resize', winResize);
 			
 			autoScrollTimer = setTimeout(function(){
 				autoScroll = true;
@@ -346,17 +354,8 @@ var controlScroll = module.exports = function( el ) {
 				  //console.log($window.width())
 				  //console.log ($('video').eq(0).position().left)
 				  if(autoScroll) {
-					  st++;
-					  //controlScroll.scroll(st);
-					  //console.log(st);
+					  st+= .2;
 					  controlScroll.scrollTo(st);
-					  //console.log('scroll')
-					  //$('input').blur();
-					  //startAutoScroll();
-					  //checkScrollPos();
-					  //fadeOverlay();
-				  	 // $scrollContainer.scrollTop($scrollContainer.scrollTop() + 1);
-					
 				  }
 				  watchcontrolScroll();
 				  
@@ -535,6 +534,7 @@ var controlScroll = module.exports = function( el ) {
 		function winResize(){
 			//$videoWidth = $('.video-holder').width();
 			//setcontrolScroll();
+			$('.top-section.bottom-fixed').css('width', $('.top-section.landing-section').width());
 		}
 		
 		controlScroll.init();

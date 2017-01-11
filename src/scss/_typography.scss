@@ -91,8 +91,13 @@ a, a:active, a:focus, input:focus {
     background: $c-white
 }
 
-
-
+br.mobile {
+	display:none;
+	
+	@include respond-to(mobile-portrait) {
+		display:block;
+	}
+}
 
 address {
 	font-style:normal; 
@@ -107,6 +112,7 @@ h1 {
 	font-family:'Anno';
 	-webkit-text-stroke: 1px $c-white;
 	color:transparent;
+	letter-spacing:0 !important;
 }
 
 h2 {
@@ -114,6 +120,7 @@ h2 {
 	@include font-size($anno-h2-font-sizes); 
 	@include line-height($anno-h2-line-height); 
 	font-variant-ligatures: normal;
+	letter-spacing:0 !important;
 }
 
 h3 {
@@ -124,7 +131,11 @@ h3 {
 	@include line-height($eurostile-body-line-height); 
 	
 	span {
-		font-size:.75em;
+		font-size: 1.04vw;
+		
+		@include respond-to(mobile-portrait) {
+			font-size: 2.25vw;
+		}
 	}
 }
 
@@ -139,6 +150,7 @@ h5 {
 	font-family:'Anno';
 	@include font-size($anno-body-font-sizes); 
 	@include line-height($anno-body-line-height); 
+	letter-spacing:0 !important;
 }
 
 
@@ -146,6 +158,96 @@ p {
 	font-family:'Anno';
 	@include font-size($anno-body-font-sizes); 
 	@include line-height($anno-body-line-height); 
+	//letter-spacing:0 !important;
+}
+
+.amp {
+	font-family:'Riccione';
+	font-size:.9em;
+}
+
+%small {
+	font-family:'NeueHaasGroteskDisp_Pro';
+	font-size: 1vw;
+	text-transform:uppercase;
+	letter-spacing: .05em;
+	
+	&:hover {
+		border-color:transparent;
+	}
+	
+	@include respond-to(mobile-portrait) {
+		font-size: 2.45vw;
+	}
+	
+	
+}
+
+%outline-h2 { 
+	@extend h2;
+    -webkit-text-stroke: .015em #fff;
+    color: transparent;
+	
+	@include respond-to(mobile-portrait) {
+		-webkit-text-stroke: .025em #fff;
+	}
+}
+
+%filetype-smaller {
+	font-family:'Eurostile_LT_Pro_Ext_Two';
+	text-transform:uppercase;
+	font-size: 1.04vw;
+	text-transform:uppercase;
+	letter-spacing: .05em;
+	color:$c-white;
+	 -webkit-text-stroke: 0;
+	 position:relative;
+     top: -.4em;
+     margin-left: .5em;
+	@include respond-to(mobile-portrait) {
+		font-size: 2.25vw;
+	}
+}
+
+%filetype {
+	font-family:'Eurostile_LT_Pro_Ext_Two';
+	text-transform:uppercase;
+	font-size: 1.04vw;
+	text-transform:uppercase;
+	letter-spacing: .05em;
+	color:$c-white;
+	 -webkit-text-stroke: 0;
+	 position:relative;
+	 top: -1.4em;
+	 margin-left:.2em;
+	@include respond-to(mobile-portrait) {
+		font-size: 2.25vw;
+	}
+}
+
+
+
+
+.url-icon {
+	font-family:'NeueHaasGroteskDisp_Pro';
+    border-bottom: 1px solid #fff;
+    padding-bottom: .1em;
+    font-size: 1vw;
+    //margin-top: -.1em;
+    position: relative;
+    margin-left: .4em;
+    top: -.85em;
+	margin-right:1em;
+	
+	&:hover {
+		border-color:transparent;
+	}
+	
+	@include respond-to(mobile-portrait) {
+	    font-size: 2.45vw;
+	    margin-left: .5em;
+	    top: -.46em; 
+	}
 }
 
 .landscape-format {
@@ -153,8 +255,16 @@ p {
 		font-size:9vh;
 	}
 	
+	h3 {
+		font-size:2vh;
+		
+		span {
+			font-size: 1.5vh;
+		}
+	}
+	
 	h4 {
-		font-size: 2.6vh;
+		font-size:2vh;
 	}
 	
 	h5 {
@@ -165,7 +275,33 @@ p {
 		font-size:6vh;
 	}
 	
+	%small {
+		font-size: 1.7vh;
+	}
 	
+	.url-icon {
+		font-size:1.7vh;
+		margin-top: -.1em;
+	}
+	
+	%filetype {
+		font-size: 2vh;
+	}
+	
+	%filetype-smaller {
+		font-size:1.5vh;
+	}
+	
+	@include respond-to(mobile-landscape) {
+		%small, .url-icon  {
+			font-size: 2.25vh;
+		}
+		
+		.url-icon {
+			margin-top:0em;
+			top:-.5em;
+		}
+	}
 }
 
 /* FORM STYLING */

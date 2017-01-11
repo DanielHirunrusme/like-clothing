@@ -1,13 +1,28 @@
 footer {
-	padding:5vw 0 0  0;
+	
+	margin-top:$g-lr-margin * 6;
 	text-align:center;
 	position:relative;
 	z-index:2;
 	
+	article {
+		@include flexbox;
+		@include justify-content(center);
+		
+		@include respond-to(mobile-portrait) {
+			@include flex-direction(column);
+			
+			copy {
+				margin-bottom:.5em;
+			}
+		}
+	}
+	
 	* {
-		font-family:'NeueHaasGroteskDisp_Pro';
-		@include font-size($p-font-sizes); 
-		@include line-height($p-line-height); 
+		
+		//font-family:'NeueHaasGroteskDisp_Pro';
+		//@include font-size($p-font-sizes); 
+		//@include line-height($p-line-height); 
 	}
 	ul {
 		text-align:center;
@@ -51,7 +66,7 @@ footer {
 .landscape-format {
 	footer {
 		* {
-			    font-size: 2.5vh;
+			//font-size: 2.5vh;
 		}
 	}
 }
