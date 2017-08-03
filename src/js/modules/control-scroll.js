@@ -31,6 +31,7 @@ var controlScroll = module.exports = function( el ) {
 			//console.log(st);
 			this.fadeOverlay();
 			this.checkScrollPos();
+      
 			clearTimeout($.data(this, 'timer'));
 			  $.data(this, 'timer', setTimeout(function() {
 				console.log('timer check fade')
@@ -48,6 +49,16 @@ var controlScroll = module.exports = function( el ) {
 				//settings.scroller[0].scrollTo(y)
 				//settings.scroller.scrollTo(y);
 				//$scrollContainer.scrollTo(y);
+			}
+		}
+		
+		controlScroll.animateScroll = function(y) {
+			console.log('animate scroll')
+			controlScroll.scroll(y);
+			if(!settings.isMobile) {
+				$scrollContainer.animate({ scrollTop:y }, 500);
+			} else {
+				settings.scroller.animate({ scrollTop:-y }, 500);
 			}
 		}
 		
@@ -73,7 +84,7 @@ var controlScroll = module.exports = function( el ) {
 					audio.setVolume('intro', 100 - volume);
 					audio.setVolume('introAfter', 100 - volume);
 					audio.setVolume('credits', volume);
-					//audio.setVolume('credits', 1 - volume);
+				
 					
 					
 				} else {
@@ -159,74 +170,7 @@ var controlScroll = module.exports = function( el ) {
 		
 		
 		
-		/*
-		function checkScrollPos(){
-			clearInterval(scrollInt);
-			var st = $scrollContainer.scrollTop();
-			
-			
-			if(st < $window.height()) {
-				$('.top-section.bottom-fixed').css('opacity', 0).removeClass('show');
-				//$('body').scrollTop($('body')[0].scrollHeight);
-			}
-			
-			if($scrollContainer.hasClass('looped')) {
-				$scrollContainer.removeClass('looped');
-				
-				if(st > $window.height()) {
-					$scrollContainer.removeClass('looped');
-					//$scrollContainer.scrollTop(0);
-				} 
-				
-			}
-			
-			
-			if(st >= $scrollContainer[0].scrollHeight - $window.height()) {
-				$('.wrapper').addClass('looped');
-				$scrollContainer.animate({ scrollTop:0 }, 0)
-				$scrollContainer.scrollTop(0);
-				//$('.top-section.bottom-fixed').css('opacity', 0)
-			}
-		}
-		*/
 		
-		/*
-		function fadeOverlay(){
-			var st = $scrollContainer.scrollTop();
-			if(!$scrollContainer.hasClass('looped')) {
-				if(st < $window.height()) {
-				
-					var op = (st / $window.height()) * 1;
-					//console.log('op ' + op)
-					$('#color-overlay').css('opacity', op);
-				} else {
-					//$('#color-overlay').css('opacity', 1);
-				}
-			} else {
-				if( st < $window.height() * 2) {
-				
-					var op = st - $window.height() + (st / $window.height()) * 1;
-					//console.log('op ' + op)
-					$('#color-overlay').css('opacity', op);
-					
-				} else {
-					//$('#color-overlay').css('opacity', 1);
-				}
-			}
-			
-			if(st >= $scrollContainer[0].scrollHeight - ($window.height() * 2 ) ) {
-				//console.log( ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height()  )
-				//console.log( $scrollContainer[0].scrollHeight / (st + $window.height()) )
-				//console.log($scrollContainer[0].scrollHeight);
-				//console.log(st + $window.height());
-				//console.log( ( $scrollContainer[0].scrollHeight - st  )/ $window.height()  )
-				//console.log( ($scrollContainer[0].scrollHeight - st) / ( $scrollContainer[0].scrollHeight - $window.height()) )
-				var op = ( $scrollContainer[0].scrollHeight - st  - $window.height() )/$window.height();
-				$('#color-overlay').css('opacity', op);
-				$('.top-section.bottom-fixed').addClass('show').css('opacity', 1 - op);
-			}
-		}
-		*/
 		
 		controlScroll.stopAutoScroll = function(){
 			
@@ -244,7 +188,18 @@ var controlScroll = module.exports = function( el ) {
 			$('body').addClass('autoScroll');
 		}
 		
+		controlScroll.removeAutoScroll = function(){
+			clearTimeout(autoScrollTimer);
+			$('body').removeClass('scrolling autoScroll');
+			setTimeout(function(){ $('body').removeClass('scrolling autoScroll'); }, 100);
+			autoScroll = false;
+		}
 		
+		controlScroll.initAutoScroll = function(){
+			autoScrollTimer = setTimeout(function(){
+				autoScroll = true;
+			}, timerSpeed);
+		}
 		
 		/*
 		$window.on('mousedown touchstart', function(event){
@@ -296,42 +251,7 @@ var controlScroll = module.exports = function( el ) {
 			//checkScrollPos()  
 			//stopAutoScroll();
 		});
-		
-		/*
-		$window.on('mousewheel touchmove', function(event){
-			
-			
-			if(event.type == 'mousewheel') {
-				if(event.deltaY < 0) {
-					xPos += event.deltaY;
-					xListener += event.deltaY;
-				}
-			
-				if(event.deltaX > 1) {
-					xPos -= event.deltaX;
-					xListener -= event.deltaX;
-				}
-			} else if(event.type == 'touchmove') {
-				
-			} else {
-				return true;
-			}
-			
-			
-			//console.log(event.type)
-			$('body').addClass('scrolling');
-			
-			clearTimeout($.data(this, 'timer'));
-			  $.data(this, 'timer', setTimeout(function() {
-				  $('body').removeClass('scrolling');
-			     //do something
-			  }, 250));
-			  
-			checkScrollPos()  
-			stopAutoScroll();
-		});
-		*/
-	
+
 	
 		controlScroll.init = function(){
 			
@@ -357,7 +277,7 @@ var controlScroll = module.exports = function( el ) {
 					  st+= .2;
 					  controlScroll.scrollTo(st);
 				  }
-				  watchcontrolScroll();
+				  //watchcontrolScroll();
 				  
 			    //elem.style.left = ( left += 10 * deltaT / 16 ) + "px";
 
@@ -366,142 +286,9 @@ var controlScroll = module.exports = function( el ) {
 		}
 		
 		
-		/*
-		function init(){
-			
-			
-			
-			setcontrolScroll();
-			fadeOverlay();
-			$('#video-container').fadeIn(6000);
-			
-			$scrollContainer.on('scroll', function(event) {
-				event.stopPropagation();
-				//console.log('scroll triggered')
-				//var gradientTopPos = $('body').scrollTop();
-			
-				checkScrollPos();
-				fadeOverlay();
-			
-			
-			
-				//console.log(event.deltaX)
-			
-			
-			
-			
-			
-			
-			    watchcontrolScroll();
-				$('body').addClass('scrolling');
-			
-				//stopAutoScroll();
-			  
-			  
-			    //console.log(event.deltaX, event.deltaY, event.deltaFactor);
-			});
-			
-			autoScrollTimer = setTimeout(function(){
-				autoScroll = true;
-			}, 6000);
-			
-			// Usage
-			animLoop(function( deltaT ) {
-				xPos -= .2;
-				xListener -= .2;
-				$('.video-scroll').css({
-				    "-webkit-transform":"translate("+xPos+"px,0)",
-				    "-ms-transform":"translate("+xPos+"px,0)",
-				    "transform":"translate("+xPos+"px,0)"
-				  });​
-					
-				  //console.log($window.width())
-				  //console.log ($('video').eq(0).position().left)
-				  if(autoScroll) {
-					  $('input').blur();
-					  startAutoScroll();
-					  checkScrollPos();
-					  fadeOverlay();
-				  	  $scrollContainer.scrollTop($scrollContainer.scrollTop() + 1);
-					  //initLoad = false;
-				  }
-				  watchcontrolScroll();
-				  
-			    //elem.style.left = ( left += 10 * deltaT / 16 ) + "px";
+	
 
-			// optional 2nd arg: elem containing the animation
-			} );
-			
-			$('.newsletter input').on('focus', inputFocus);
-			
-			$window.on('resize', winResize);
-			
-		}
-		*/
-		
-		function inputFocus(){
-			if(!$('.bottom-fixed').hasClass('show')) {
-				
-			} else {
-				
-			}
-			$scrollContainer
-		}
-		
-		function watchcontrolScroll(){
-			
-			//console.log( $('.video-1-clone').position().left )
-			
-			/*
-			$('.video-holder').each(function(){
-				if($(this).position().left + $(this).width() >= 0 && $(this).position().left <= $window.width() ) {
-					$(this).find('video')[0].play();
-				} else {
-					//console.log($(this).find('video').attr('src'))
-					$(this).find('video')[0].pause();
-				}
-			});
-			
-			if( $('.video-1-clone').position().left <= 0 ) {
-				xPos = 0;
-				
-				$('.video-scroll').css({
-				    "-webkit-transform":"translate("+xPos+"px,0)",
-				    "-ms-transform":"translate("+xPos+"px,0)",
-				    "transform":"translate("+xPos+"px,0)"
-				  });​
-				  
-				
-			}
-			*/
-			
-			/*
-			if(xPos < -vidScrollWidth ) {
-				xPos = 0;
-				xListener = 0;
-				$controlScrollcroll.append($('.video-holder').eq(0));
-				
-				for(var i=0; i<$('.video-holder').length; i++) {
-					$('.video-holder').eq(i).css('left', ( $videoWidth * i) + 'px');
-				}
-				$('.video-holder').eq(1).find('video')[0].play();
-				console.log('reset entire piece')
-				return true;
-			}
-			
-			if(xListener < -$videoWidth) {
-				xListener = 0;
-				var _left = Number( $('.video-holder').last().css('left').split('px').join('') ) + $videoWidth;
-			
-				$('.video-holder').eq(2).find('video')[0].play();
-				$('.video-holder').eq(0).find('video')[0].pause();
-				$('.video-holder').eq(0).css('left', _left + 'px')
-				$controlScrollcroll.append($('.video-holder').eq(0));
-			}
-			*/
-			
-			
-		}
+
 		
 		function setcontrolScroll(){
 			vidScrollWidth = 0;

@@ -22,8 +22,8 @@ var audioHover = module.exports = function( el ) {
 				 clearInterval(fadeInterval);
 				 audioVol = 100;
 				 audio.volume(100);
-				 console.log('play SFX')
-				 console.log(audioVol)
+				 //console.log('play SFX')
+				 //console.log(audioVol)
 				 audio.seek(0);
 				 audio.play();
 			 }
@@ -45,7 +45,7 @@ var audioHover = module.exports = function( el ) {
 		
 		function initAudio () {
 			
-			console.log( 'assets/audio/' + file )
+			//console.log( 'assets/audio/' + file )
 			
 		    audio = new Audio5js({
 		      ready: function () {

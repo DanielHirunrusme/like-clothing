@@ -1,6 +1,6 @@
 var settings = require( "modules/settings" ),
 	throttle = require("modules/throttle"),
-	Audio5js = require('audio5');
+  Audio5js = require('audio5');
 
 
 var audio = module.exports = function( el ) {
@@ -9,6 +9,7 @@ var audio = module.exports = function( el ) {
 		intro,
 		introEnded = false,
 		audioOn = true,
+    isAudioOnYT = true,
 		introAfter,
 		vol = 100,
 		credits,
@@ -18,6 +19,8 @@ var audio = module.exports = function( el ) {
 		introVolTemp  = 100,
 		introAfterVolTemp = 100,
 		creditsVolTemp = 0,
+    fadeInInterval,
+    fadeOutInterval,
 		fadeInterval,
 		init = false;
 		init_1 = false, init_2 = false, init_3 = false;
@@ -33,7 +36,7 @@ var audio = module.exports = function( el ) {
 		
 		function initAudio () {
 			
-
+      
 			
 		    intro = new Audio5js({
 		      ready: function () {
@@ -83,7 +86,7 @@ var audio = module.exports = function( el ) {
 			
 			if(!settings.isMute) {
 				audioOn = false;
-				settings.isMute = true;
+				//settings.isMute = true;
 				
 				if(!settings.isMobile) {
 					fadeOut();
@@ -95,7 +98,7 @@ var audio = module.exports = function( el ) {
 				
 			} else {
 				audioOn = true;
-				settings.isMute = false;
+				//settings.isMute = false;
 				
 				if(!settings.isMobile) {
 					fadeIn();
@@ -112,16 +115,91 @@ var audio = module.exports = function( el ) {
 			}
 		}
 		
+		//fadeOut all audio instances, but still set their audio positions
+		
+		audio.fadeOut = function(){
+			audioOn = false;
+			//settings.isMute = true;
+      
+			$el.removeClass('active');
+			
+			if(!settings.isMobile) {
+				fadeOut();
+			} else {
+				intro.pause();
+				introAfter.pause();
+				credits.pause();
+			}
+		}
+    
+    audio.muteAll = function(){
+      audioOn = false;
+      settings.isMute = true;
+      
+      clearInterval(fadeOutInterval);
+			clearInterval(fadeInInterval);
+      
+      $el.removeClass('active');
+      
+      if(!settings.isMobile) {
+          clearInterval(fadeInterval);
+				  intro.volume(0);
+				  introAfter.volume(0);
+				  credits.volume(0);
+  			} else {
+  				intro.pause();
+  				introAfter.pause();
+  				credits.pause();
+          
+  				intro.volume(0);
+  				introAfter.volume(0);
+  				credits.volume(0);
+				
+  			}
+    }
+		
+		//fadeIn all audio instances, based on scroll position
+		
+		audio.fadeIn = function(){
+			audioOn = true;
+			//settings.isMute = false;
+      
+      console.log('settings.ytPlayer')
+      
+      
+			
+			$el.addClass('active');
+			
+			if(!settings.isMobile) {
+				fadeIn();
+			} else {
+				if(!introEnded) {
+					intro.play();
+				} else {
+					introAfter.play();
+				}
+				
+				//credits.play();
+			}
+		}
+    
+    audio.getAudioStatus = function(){
+      return audioOn;
+    }
+		
 		
 		audio.setVolume = function(instance, _volume) {
 				if(!init) return false;
-				console.log('volume ' + _volume)
-				if(!settings.isMute) clearInterval(fadeInterval);
+				//console.log('volume ' + _volume)
+				//if(!settings.isMute) clearInterval(fadeInterval);
 				switch(instance) {
 				case 'intro':
 					introVol = _volume;
-					console.log(settings.isMute)
-					if(!settings.isMute) intro.volume(getVolPercent(_volume)); 
+					
+					if(!settings.isMute){
+					  intro.volume(getVolPercent(_volume)); 
+            //console.log('set intro volume')
+					} 
 					break;
 				case 'introAfter':
 					introAfterVol = _volume;
@@ -138,105 +216,125 @@ var audio = module.exports = function( el ) {
 		
 		function fadeIn() {
 			if(settings.isMute) {
-				return true;
-			} 
+				settings.isMute = false;
+				
+			} else {
+			  return true;
+			}
+      
+      if(settings.ytPlayer) {
+        console.log(settings.ytPlayer);
+        settings.ytPlayer.pauseVideo();
+      }
 			
-			clearInterval(fadeInterval);
+      clearInterval(fadeOutInterval);
+			clearInterval(fadeInInterval);
 			
 			var fadeInIntroVol = intro.volume() * 100,
 				fadeInIntroAfterVol = introAfter.volume() * 100,
 				fadeInCreditsVol = credits.volume() * 100;
 			
-            fadeInterval = setInterval(function() { 
+        fadeInInterval = setInterval(function() { 
+				  
+          console.log('fade in')
+          
+  				if(intro.volume() < getVolPercent(introVol)) {
+  					fadeInIntroVol += 1;
+  					//intro.volume(intro.volume() + 1)
+  				} else {
+  					fadeInIntroVol = introVol;
+  					//intro.volume(introVol)
+  				}	
+			
+  				if(introAfter.volume() < getVolPercent(introAfterVol) ) {
+  					//introAfter.volume(introAfter.volume() + 1)
+  					fadeInIntroAfterVol += 1;
+  				} else {
+  					//intro.volume(introAfterVol)
+  					fadeInIntroAfterVol = introAfterVol;
+  				}	
+			
+  				if(credits.volume() < getVolPercent(creditsVol)) {
+  					//credits.volume(credits.volume() + 1)
+  					fadeInCreditsVol += 1;
+  				} else {
+  					//intro.volume(creditsVol)
+  					fadeInCreditsVol = creditsVol;
+  				}
+			
+  				//console.log(fadeInIntroVol);
 				
-				if(intro.volume() < introVol) {
-					fadeInIntroVol += 1;
-					//intro.volume(intro.volume() + 1)
-				} else {
-					fadeInIntroVol = introVol;
-					//intro.volume(introVol)
-				}	
-			
-				if(introAfter.volume() < introAfterVol) {
-					//introAfter.volume(introAfter.volume() + 1)
-					fadeInIntroAfterVol += 1;
-				} else {
-					//intro.volume(introAfterVol)
-					fadeInIntroAfterVol = introAfterVol;
-				}	
-			
-				if(credits.volume() < creditsVol) {
-					//credits.volume(credits.volume() + 1)
-					fadeInCreditsVol += 1;
-				} else {
-					//intro.volume(creditsVol)
-					fadeInCreditsVol = creditsVol;
-				}
-			
-				console.log(fadeInIntroVol);
+  				intro.volume(getVolPercent(fadeInIntroVol));
+  				introAfter.volume(getVolPercent(fadeInIntroAfterVol));
+  				credits.volume(getVolPercent(fadeInCreditsVol));
 				
-				intro.volume(getVolPercent(fadeInIntroVol));
-				introAfter.volume(getVolPercent(fadeInIntroAfterVol));
-				credits.volume(getVolPercent(fadeInCreditsVol));
-				
-				if(fadeInIntroVol == introVol && fadeInIntroAfterVol == introAfterVol && fadeInCreditsVol == creditsVol) {
-					//console.log('clear int')
-					clearInterval(fadeInterval);
-					return true;
-				}	
+  				if(fadeInIntroVol == introVol && fadeInIntroAfterVol == introAfterVol && fadeInCreditsVol == creditsVol) {
+  					//console.log('clear int')
+  					clearInterval(fadeInInterval);
+  					return true;
+  				}	
 			
-			}, 16);
+			}, 20);
 			
 		}
 		
 		
 		function fadeOut() {
-			
-			clearInterval(fadeInterval);
+			if(!settings.isMute) {
+				settings.isMute = true;
+				
+			} else {
+			  return true;
+			} 
+      
+      clearInterval(fadeOutInterval);
+			clearInterval(fadeInInterval);
 			
 			var fadeIntroVol = intro.volume() * 100,
 				fadeIntroAfterVol = introAfter.volume() * 100,
 				fadeCreditsVol = credits.volume() * 100;
 			
-            fadeInterval = setInterval(function() { 
+        fadeOutInterval = setInterval(function() { 
+			    
+          console.log('fade out')
+          
+  				if(fadeIntroVol > 0) {
+  					fadeIntroVol -= 1;
+  				} else {
+  					fadeIntroVol = 0;
+  				}	
 			
-				if(fadeIntroVol > 0) {
-					fadeIntroVol -= 1;
-				} else {
-					fadeIntroVol = 0;
-				}	
+  				if(fadeIntroAfterVol  > 0) {
+  					fadeIntroAfterVol  -= 1;
+  				} else {
+  					fadeIntroAfterVol  = 0;
+  				}	
 			
-				if(fadeIntroAfterVol  > 0) {
-					fadeIntroAfterVol  -= 1;
-				} else {
-					fadeIntroAfterVol  = 0;
-				}	
+  				if(fadeCreditsVol > 0) {
+  					fadeCreditsVol -= 1;
+  				} else {
+  					fadeCreditsVol = 0;
+  				}
 			
-				if(fadeCreditsVol > 0) {
-					fadeCreditsVol -= 1;
-				} else {
-					fadeCreditsVol = 0;
-				}
-			
-				console.log( intro.volume() )
-				intro.volume(getVolPercent(fadeIntroVol));
-				introAfter.volume(getVolPercent(fadeIntroAfterVol));
-				credits.volume(getVolPercent(fadeCreditsVol));
+  				//console.log( intro.volume() )
+  				intro.volume(getVolPercent(fadeIntroVol));
+  				introAfter.volume(getVolPercent(fadeIntroAfterVol));
+  				credits.volume(getVolPercent(fadeCreditsVol));
 				
-				if(fadeIntroVol == 0 && fadeIntroAfterVol == 0 && fadeCreditsVol == 0) {
-					//console.log('clear int')
-					clearInterval(fadeInterval);
-					return true;
-				}	
+  				if(fadeIntroVol == 0 && fadeIntroAfterVol == 0 && fadeCreditsVol == 0) {
+  					//console.log('clear int')
+  					clearInterval(fadeOutInterval);
+  					return true;
+  				}	
 			
-			}, 16);
+			}, 5);
 			
 			
 		}
 		
 		function getVolPercent(_volume) {
 			vol = _volume / 100;
-			vol = vol > 100 ? 100 : vol;
+			vol = vol > 1 ? 1 : vol;
 			return vol;
 		}
 		

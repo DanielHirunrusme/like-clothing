@@ -31,6 +31,8 @@ var settings = module.exports = {
 	unique: true,
 	scroller: null,
 	isMute:false,
+  ytPlayer: false,
+  isMuteYT: false,
 	isMobile: checkMobile(),
 	page: '',
 };
@@ -43,4 +45,7 @@ settings.scrollPos = settings.scrollPos;
 settings.scrollContainer = settings.scrollContainer;
 settings.animating = settings.animating;
 settings.unique = settings.unique;
+settings.isMute = settings.isMute;
+settings.ytPlayer = settings.ytPlayer;
+settings.isMuteYT = settings.isMuteYT;
 settings.scroller = settings.scroller;

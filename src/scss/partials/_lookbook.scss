@@ -1,0 +1,286 @@
+#lookbook-article {
+	width:100%;
+	margin:0;
+	&:after {
+		content:' ';
+		clear:left;
+		display:block;
+	}
+}
+
+#lookbook {
+	float:left;
+	//@include flexbox;
+	//@include flex-direction(row);
+	//@include flex-wrap(wrap);
+	margin-bottom:12vh;
+	width: 106%;
+	position:relative;
+	margin-left:6vw;
+
+	
+	@media (max-width: 1500px) {
+		
+	}
+	
+	.lookbook-block {
+	    width: 12.15vw;
+	    height: 12.15vw;
+	    text-align: right;
+	    margin-bottom: 2.8vw;
+	    margin-right: 3vw;
+	    cursor: pointer;
+	    max-width: 201px;
+		max-height:201px;
+	    display: block;
+	    float: left;
+		//max-width:140px;
+		
+		@include transition(.4s opacity);
+		
+		/*
+		&.lookbook-thumb:nth-of-type(6n + 6) {
+			margin-right:0;
+		}
+		*/
+		
+		&.no-margin-r {
+			margin-right:0;
+		}
+		
+		&.last-block {
+			//margin-right:0;
+		}
+		
+		&.zoomed.last-block {
+			//margin-right:14vw;
+			margin-right:30%;
+		}
+		
+		
+		&.xl-break {
+			clear:left;
+		}
+		
+		
+		
+		
+		&.lookbook-label.zoomed {
+			width: 12.15vw;
+			height: 12.15vw;
+			clear:left;
+			margin-left: 0;
+			//max-width:144px;
+		}
+		
+		&.zoomed:nth-child(2){
+			margin-left: 0;
+		}
+		
+		&.xl-no-margin-r {
+			//margin-right:0;
+		}
+		
+		
+		
+		/*
+		@media (max-width: 1200px) {
+			
+				width:16.8%;
+				height:16.8%;
+				margin-right:4%;
+				margin-bottom:4%;
+			
+		
+			&.xl-no-margin-r {
+				margin-right:4%;
+			}
+		
+			&.l-no-margin-r {
+				margin-right:0;
+			}
+		}
+		*/
+		
+		@include respond-to(mobile-portrait) {
+			width:65vw;
+			height:65vw;
+			margin-left:12vw;
+			max-width:none;
+			max-height:none;
+			margin-right:0;
+			pointer-events:none;
+			
+			&.first-set-image {
+				margin-left:0;
+			}
+			
+			&.lookbook-label {
+			    width: 8vw;
+			    height: 8vw;
+			    clear: left;
+				margin-left:0;
+				margin-right:4vw;
+				//max-width:172px;
+			}
+			
+			&.first-set-image {
+				margin-left:0;
+			}
+		}
+		
+		
+		
+		@include respond-to(mobile-landscape) {
+			width:50vw;
+			height:50vw;
+			margin-left:20vw;
+			max-width:none;
+			pointer-events:none;
+			max-height:none;
+			
+			&.lookbook-label {
+			    width: 18vw;
+			    height: 18vw;
+			    clear: left;
+				margin-left:0;
+			}
+			
+			&.first-set-image {
+				margin-left:0;
+			}
+		}
+		
+		&.zoomed {
+			width: 50%;
+			height: 50%;
+			margin-left:15.15vw;
+			max-width:none;
+			max-height:none;
+			clear:left;
+			
+			&.first-image {
+				margin-left:0;
+				clear:none;
+				//max-width:172px;
+			}
+			
+			&:nth-of-type(1), &:nth-of-type(2) {
+				margin-left:0;
+			} 
+			
+			//margin-left:13.94vw;
+			
+			@include respond-to(mobile-portrait) {
+				width:50vw;
+				height:50vw;
+				margin-left:20vw;
+				max-width:none;
+				max-height:none;
+				pointer-events:none;
+				
+				&.lookbook-label {
+				    width: 18vw;
+				    height: 18vw;
+				    clear: left;
+					margin-left:0;
+					//max-width:172px;
+				}
+			
+				&.first-set-image {
+					margin-left:0;
+				}
+			}
+		
+			@include respond-to(mobile-landscape) {
+				width:50vw;
+				height:50vw;
+				margin-left:20vw;
+				max-width:none;
+				max-height:none;
+				pointer-events:none;
+				
+				&.lookbook-label {
+				    width: 18vw;
+				    height: 18vw;
+				    clear: left;
+					margin-left:0;
+				}
+			
+				&.first-set-image {
+					margin-left:0;
+				}
+			}
+		}
+		
+		
+		
+		img {
+			
+			width:100%;
+			//margin-left:4vw;
+			float:left;
+			
+		}
+		
+		&.hidden {
+			@include opacity(.5);
+			img {
+				
+			}
+		}
+		
+	}
+	
+}
+
+#lookbook-article.max-width {
+	margin:0 auto;
+
+	#lookbook {
+		margin-left:0;
+		
+		.lookbook-block {
+			margin-right:59px;
+			margin-bottom:59px;
+			&.zoomed {
+				 //margin-left: 17.3%;
+				 margin-left:260px;
+				 margin-right:20%;
+				&.first-image {
+					margin-left:59px;
+					
+				}
+			}
+			
+			&.lookbook-label.zoomed {
+				margin-left: 0;
+				margin-right:0;
+				max-width:201px;
+			}
+		}
+	}
+}
+
+.landscape-format {
+	
+	#lookbook {
+		
+		.lookbook-block {
+			/*
+			width: 15vh;
+		    height: 15vh;
+		    text-align: right;
+		    margin-bottom: 3vh;
+		    margin-right: 5vh;
+		    cursor: pointer;
+		    display: block;
+		    float: left;
+		    max-width: 143px;
+			*/
+			
+		}
+		
+	}
+	
+}

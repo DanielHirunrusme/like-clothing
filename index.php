@@ -10,12 +10,11 @@ $mobile = true;
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <title>LIKE</title>
-<meta name="description" content="Like Clothing Season 2">
 <meta name="author" content="Harry Gassal and Daniel Hirunrusme">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,6 +27,14 @@ $mobile = true;
 <![endif]-->
 
 <!-- META -->
+<meta name="description" content="Like Clothing Season 5" />
+<meta property="og:title" content="Like Clothing">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://like-clothing.biz">
+<meta property="og:image" content="ttp://like-clothing.biz/assets/images/og-image.jpg">
+<meta property="og:description" content="Lucinda Trask created LIKE as an outlet to share and customize her most personal designs. The current collection, What Are We Doing Tonight, is a new collection and fashion film in collaboration with Eric Mack.">
+
+<!-- FAVICON -->
 <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="assets/images/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-icon-72x72.png">
@@ -42,9 +49,13 @@ $mobile = true;
 <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
 <link rel="manifest" href="assets/images/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileColor" content="#f8f8f8">
 <meta name="msapplication-TileImage" content="assets/images/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f8f8f">
+
+
+
+<link rel="image_src" href="assets/images/og-image.jpg"/>
 
 </head>
 <body data-module-init="body" class="<?php if($mobile) { echo 'mobile-device'; } else { echo 'desktop-device'; } ?>">
@@ -90,14 +101,14 @@ $mobile = true;
 		<div class="video-holder video-1-clone">
 			<video id="video-11" class="active" src="assets/videos/4_1.mp4"  muted  autoplay loop playsinline></video>
 			<video id="video-12" src="assets/videos/1_3.mp4"  muted  loop playsinline></video>
-			<video id="video-8" src="assets/videos/3_1.mp4"  muted  loop playsinline></video>
+			<video id="video-88" src="assets/videos/3_1.mp4"  muted  loop playsinline></video>
 			<video id="video-13" src="assets/videos/7_1.mp4"  muted  loop playsinline></video>
 		</div>
 		<div class="video-holder">
 			<video id="video-14" class="active" src="assets/videos/2_1.mp4"  muted  autoplay loop playsinline></video>
 			<video id="video-15" src="assets/videos/9_3.mp4"  muted  loop playsinline></video>
 			<video id="video-16" src="assets/videos/8_1.mp4"  muted  loop playsinline></video>
-			<video id="video-7" class="active" src="assets/videos/8_2.mp4"  muted  autoplay loop playsinline></video>
+			<video id="video-77" class="active" src="assets/videos/8_2.mp4"  muted  autoplay loop playsinline></video>
 		</div>
 	</div>
 </section>
@@ -106,7 +117,7 @@ $mobile = true;
 	$videos = array('1_3', '7_1', '4_1', '8_1', '2_1', '9_3', '8_2', '3_1', '4_1');
 	$video  = array_rand($videos);
 ?>
-<section id="video-container">
+<section id="video-container-cloned">
 	<video id="video-1" src="assets/videos/<?php print $videos[$video];  ?>.mp4"  muted  autoplay loop playsinline></video>
 </section>	
 <?php endif; ?>
@@ -122,11 +133,11 @@ $mobile = true;
 		<h3>Like Clothing <span class="h3-sub">Presents</span></h3>
 	</header>
 
-	<h1>What are we<br class="mobile-portrait-hide"> doing tonight?</h1>
+	<h1>What are we<br class="mobile-portrait-hide"> doing tonight&#63;</h1>
 	
 	<h3><span class="h3-sub">A</span> Fashion Sitcom</h3>
 	
-	<h2 class="collection-callout">A new collection and &#xFB01;lm<br>February, 2016</h2>
+	<h2 class="collection-callout" >A new collection and film<br>Fall/Winter, 2017</h2>
 	
 	<form class="newsletter" action="https://like-clothing.us14.list-manage.com/subscribe/post" method="post">
 		<input type="hidden" name="u" value="b4d555837ccea3d4743b9cb58">
@@ -169,7 +180,7 @@ $mobile = true;
 		
 		<ul>
 			<li><h4>Director of Photography</h4><h5><a href="http://www.ericyue.com/" title="Eric Yue" target="_blank">Eric Yue<span class="url-icon">URL</span></a></h5></li>
-			<li><h4>Editor</h4><h5><a href="http://www.no1like.us" title="Jeff Cristiani" target="_blank">Je&#64256; Cristiani<span class="url-icon">URL</span></a></h5></li>
+			<li><h4>Editor</h4><h5><a href="http://www.no1like.us" title="Jeff Cristiani" target="_blank">Jeff Cristiani<span class="url-icon">URL</span></a></h5></li>
 			<li><h4>Original Score</h4><h5><a href="http://michaelbeharie.com/" title="Michael Beharie" target="_blank">Michael Beharie<span class="url-icon">URL</span></a></h5></li>
 			<li><h4>Sound Mix</h4><h5><a href="https://vimeo.com/sashamandel" title="Sasha Mandel" target="_blank">Sasha Mandel<span class="url-icon">URL</span></a></h5></li>
 			<li><h4>VFX</h4><h5>Jae Won Lee</h5></li>
@@ -189,8 +200,23 @@ $mobile = true;
 	
 	
 	<section class="information">
+		
+		<div id="player-holder" class="youtube-container" data-module-init="youtube">
+			<div class="preview">
+				
+				<div class="play-button">
+					<img class="play-button-off" alt="play video" src="assets/images/play-button-off.svg" />
+					<img class="play-button-on" alt="play video" src="assets/images/play-button-on.svg" />
+				</div>
+				
+				<img src="http://i.ytimg.com/vi/AFQ0iO9NPnU/maxresdefault.jpg" alt="video preview thumbnail" />
+			</div>
+			<div id="player">
+			</div>
+		</div>
+		
 		<article>
-			<p><b>Like Clothing</b> is launching a new collection and fashion &#xFB01;lm in collaboration with painter Eric Mack <a href="http://moranbondaroff.com/artists/eric-mack/" target="_blank">MORAN BONDAROFF</a> <a href="http://www.alminerech.com/artists/3600-eric-mack" target="_blank">ALMINE RECH</a> <a href="http://momaps1.org/exhibitions/view/403" target="_blank">MOMA PS1</a>. This collection &ldquo;Paint Two,&rdquo; is their third collaboration including the previous collection, &ldquo;Paint&rdquo; and an editorial for Talk Magazine&nbsp;<a href="http://talk-is.cheap/" target="_blank">URL</a> with photographer David Brandon Geeting&nbsp;<a href="http://www.dbg.nyc/" target="_blank">URL</a>.</p>
+			<p><b>Like Clothing</b> is debuting a new collection and film in collaboration with painter Eric Mack <a href="http://moranbondaroff.com/artists/eric-mack/" target="_blank">MORAN BONDAROFF</a> <a href="http://www.alminerech.com/artists/3600-eric-mack" target="_blank">ALMINE RECH</a> <a href="http://momaps1.org/exhibitions/view/403" target="_blank">MOMA PS1</a>. This collection &ldquo;Paint Two,&rdquo; is their third collaboration including the previous collection, &ldquo;Paint&rdquo; and an editorial for Talk Magazine&nbsp;<a href="http://talk-is.cheap/" target="_blank">URL</a> with photographer David Brandon Geeting&nbsp;<a href="http://www.dbg.nyc/" target="_blank">URL</a>.</p>
 		</article>
 		
 		<article class="kits">
@@ -356,15 +382,129 @@ $mobile = true;
 				<span class="label">Press &amp; Sales</span></a>
 		</article>
 		
-		
-		
-		<article>
-			<p><b>What Are We Doing Tonight</b>, is a 10-min fashion sitcom in &#xFB01;ve scenes conceived by art <span class="amp">&amp;</span> design director Harry Gassel <a href="http://talk-is.cheap/" title="Talk Magazine" target="_blank">TALK</a> <a href="http://www.documentjournal.com/" target="_blank">DOCUMENT</a> <a href="http://www.thefader.com/2013/11/22/what-were-reading-harry-gassel" target="_blank">THE FADER</a> produced in collaboration with Like Clothing. The &#xFB01;lm, directed by multimedia artist Pepi Ginsberg <a href="http://www.n-a-r-c.com/" class="no-wrap" target="_blank">N-A-R-C</a> <a href="https://vimeo.com/pepiginsberg" target="_blank">THE BLUE DOT</a> <a href="http://www.npr.org/templates/story/story.php?storyId=90449506" target="_blank"> THE WATERLINE</a> with &#xFB01;lmmaker Eric Yue <a href="https://vimeo.com/91617742" target="_blank">RATKING’S CANAL</a> <a href="https://vimeo.com/107283694" target="_blank">A.P.C.</a> as director of photography, includes an original score by composer <span class="amp">&amp;</span> guitarist Michael Beharie <a href="http://astronauti.co/michael-beharie-ray-like-morning-astr032/" target="_blank">ASTRO NAUTICO</a> <a href="http://www.thefader.com/2016/04/26/michael-beharie-long-time" target="_blank">THE FADER</a> <a href="https://thump.vice.com/en_us/track/michael-beharie-a-stone-stream" target="_blank">THUMP</a>. &ldquo;What Are We Doing Tonight&rdquo; stars actor <span class="amp">&amp;</span> singer Ato Blankson-Wood <a href="http://www.nytimes.com/2016/05/26/theater/review-in-the-total-bent-a-father-son-rift-and-a-sensational-score.html" target="_blank">THE TOTAL BENT</a> and model Lauren Perlman&nbsp;<a href="http://www.vogue.com/fashion-shows/spring-2017-ready-to-wear/rachel-comey/slideshow/collection#16" target="_blank">VOGUE</a>. The lookbook features photography by Matthew Tammaro <a href="http://www.newyorker.com/magazine/2016/06/20/mitski-miyawaki-and-chicago-rappers" target="_blank">NEW YORKER</a> <a href="http://www.thefader.com/2015/04/28/trans-identifying-persons-model-spring-fashion-and-talk-shopping" target="_blank">THE FADER</a> <a href="http://hellomrmag.com/popeye2016/" target="_blank">POPEYE</a> and hair and makeup by Rachael Ghorbani&nbsp;<a href="https://www.frankieandclo.com/rachaelghorbani/" target="_blank">FRANKIE + CLO</a>.
-			</p>
+		<article id="lookbook-article">
+			
+			<h3 class="article-title">Paint Two <span class="h3-sub">Lookbook</span></h3>
+			
+			<div id="lookbook" data-module-init="lookbook">
+				
+				<!-- lookbook set 1 -->
+					
+					<div class="lookbook-block lookbook-label lookbook-thumb" data-set-index="0" data-set="1">
+						<h3><span class="h3-sub">01</span></h3>
+					</div>
+          
+					<div class="lookbook-block first-set-image lookbook-thumb" data-set-index="0" data-set="1">
+						<img src="assets/images/LIKE-008.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="2" data-set="1">
+						<img src="assets/images/LIKE-009.jpg" alt="lookbook" />
+					</div>
+					
+					
+				<!-- /lookbook set 1 -->
+				
+				<!-- lookbook set 2 -->
+					
+					<div class="lookbook-block lookbook-label lookbook-thumb" data-set-index="0" data-set="2">
+						<h3><span class="h3-sub">02</span></h3>
+					</div>
+					
+					<div class="lookbook-block first-set-image lookbook-thumb" data-set-index="0" data-set="2">
+						<img src="assets/images/LIKE-007.jpg" alt="lookbook" />
+					</div>
+					
+				<!-- /lookbook set 2 -->
+				
+				<!-- lookbook set 3 -->
+					
+					<div class="lookbook-block lookbook-label lookbook-thumb xl-break" data-set-index="0" data-set="3">
+						<h3><span class="h3-sub">03</span></h3>
+					</div>
+					
+					<div class="lookbook-block first-set-image lookbook-thumb" data-set-index="0" data-set="3">
+						<img src="assets/images/LIKE-010.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="1" data-set="3">
+						<img src="assets/images/LIKE-011.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="2" data-set="3">
+						<img src="assets/images/LIKE-012.jpg" alt="lookbook" />
+					</div>
+					
+				<!-- /lookbook set 3 -->
+				
+				<!-- lookbook set 4 -->
+					
+					<div class="lookbook-block lookbook-label lookbook-thumb" data-set-index="0" data-set="4">
+						<h3><span class="h3-sub">04</span></h3>
+					</div>
+					
+					<div class="lookbook-block first-set-image lookbook-thumb xl-no-margin-r" data-set-index="0" data-set="4">
+						<img src="assets/images/LIKE-001.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="1" data-set="4">
+						<img src="assets/images/LIKE-002.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="2" data-set="4">
+						<img src="assets/images/LIKE-003.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="3" data-set="4">
+						<img src="assets/images/LIKE-004.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="4" data-set="4">
+						<img src="assets/images/LIKE-006.jpg" alt="lookbook" />
+					</div>
+					
+				<!-- /lookbook set 4 -->
+				
+				<!-- lookbook set 5 -->
+					
+					<div class="lookbook-block lookbook-label lookbook-thumb" data-set-index="0" data-set="5">
+						<h3><span class="h3-sub">05</span></h3>
+					</div>
+					
+					<div class="lookbook-block first-set-image lookbook-thumb xl-no-margin-r" data-set-index="0" data-set="5">
+						<img src="assets/images/LIKE-013.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="1" data-set="5">
+						<img src="assets/images/LIKE-014.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="2" data-set="5">
+						<img src="assets/images/LIKE-015.jpg" alt="lookbook" />
+					</div>
+					
+					<div class="lookbook-block lookbook-thumb" data-set-index="3" data-set="5">
+						<img src="assets/images/LIKE-016.jpg" alt="lookbook" />
+					</div>
+					
+				<!-- /lookbook set 5 -->
+				
+				
+				
+			</div><!-- /lookbook -->
+			
 		</article>
 		
+		
+		<!--
 		<article>
-			<p><b>Like</b> is Lucinda Trask’s clothing line. While working as a designer at Zac Posen and Isaac Mizrahi, she began to create customized garments for private clients. This practice became Like, a label and studio specializing in design, sourcing and patternmaking for  her friends in the industry and customizing her own designs for private clients. Like has expanded to ready-to-wear for stores like Sincerely Tommy&nbsp;<a href="https://sincerelytommy.com/" target="_blank">URL</a>. and custom designs for Stone Fox Bride&nbsp;<a href="http://us10.campaign-archive1.com/?u=da5207c47fe3ce6d07bc4f729&id=5931a76cd5" target="_blank">URL</a> Like has been featured in W, Talk, The Fader&nbsp;<a href="http://www.thefader.com/2014/05/07/interview-introducing-likes-almost-couture-cozy-gear" target="_blank">URL</a>, The Cut&nbsp;<a href="http://nymag.com/thecut/2015/08/meet-the-bed-stuy-shop-owner-with-chanel-roots.html" target="_blank">URL</a>, Racked&nbsp;<a href="http://ny.racked.com/2015/5/15/8610085/spring-outfit-ideas"target="_blank">URL</a> and Suited Magazine&nbsp;<a href="http://www.suitedmagazine.com/" target="_blank">URL</a>. The non-seasonal collections mix high-concept and reimagined, everyday basics.</p>
+			<p><b>What Are We Doing Tonight</b> is a 10-min fashion sitcom in five scenes conceived by art <span class="amp">&amp;</span> design director Harry Gassel <a href="http://talk-is.cheap/" title="Talk Magazine" target="_blank">TALK</a> <a href="http://www.documentjournal.com/" target="_blank">DOCUMENT</a> <a href="http://www.thefader.com/2013/11/22/what-were-reading-harry-gassel" target="_blank">THE FADER</a> produced in collaboration with Like Clothing. The film, directed by multimedia artist Pepi Ginsberg <a href="http://www.n-a-r-c.com/" class="no-wrap" target="_blank">N-A-R-C</a> <a href="https://vimeo.com/pepiginsberg" target="_blank">THE BLUE DOT</a> <a href="http://www.npr.org/templates/story/story.php?storyId=90449506" target="_blank"> THE WATERLINE</a> with filmmaker Eric Yue <a href="https://vimeo.com/91617742" target="_blank">RATKING’S CANAL</a> <a href="https://vimeo.com/107283694" target="_blank">A.P.C.</a> as director of photography, includes an original score by composer <span class="amp">&amp;</span> guitarist Michael Beharie <a href="http://astronauti.co/michael-beharie-ray-like-morning-astr032/" target="_blank">ASTRO NAUTICO</a> <a href="http://www.thefader.com/2016/04/26/michael-beharie-long-time" target="_blank">THE FADER</a> <a href="https://thump.vice.com/en_us/track/michael-beharie-a-stone-stream" target="_blank">THUMP</a>. &ldquo;What Are We Doing Tonight&rdquo; stars actor <span class="amp">&amp;</span> singer Ato Blankson-Wood <a href="http://www.nytimes.com/2016/05/26/theater/review-in-the-total-bent-a-father-son-rift-and-a-sensational-score.html" target="_blank">THE TOTAL BENT</a> and model Lauren Perlman&nbsp;<a href="http://www.vogue.com/fashion-shows/spring-2017-ready-to-wear/rachel-comey/slideshow/collection#16" target="_blank">VOGUE</a>. The lookbook features photography by Matthew Tammaro <a href="http://www.newyorker.com/magazine/2016/06/20/mitski-miyawaki-and-chicago-rappers" target="_blank">NEW YORKER</a> <a href="http://www.thefader.com/2015/04/28/trans-identifying-persons-model-spring-fashion-and-talk-shopping" target="_blank">THE FADER</a> <a href="http://hellomrmag.com/popeye2016/" target="_blank">POPEYE</a> and hair and makeup by Rachael Ghorbani&nbsp;<a href="https://www.frankieandclo.com/rachaelghorbani/" target="_blank" class="no-wrap">FRANKIE&nbsp;+&nbsp;CLO</a>.
+			</p>
+		</article>
+			-->
+		
+		<article>
+			<p><b>Like</b> is Lucinda Trask’s clothing line. While working as a designer at Zac Posen and Isaac Mizrahi, she began to create customized garments for private clients. This practice became Like, a label and studio specializing in design, sourcing and patternmaking for  her friends in the industry and customizing her own designs for private clients. Like has expanded to ready-to-wear for stores like Sincerely Tommy&nbsp;<a href="https://sincerelytommy.com/" target="_blank">URL</a>. and custom designs for Stone Fox Bride&nbsp;<a href="http://us10.campaign-archive1.com/?u=da5207c47fe3ce6d07bc4f729&id=5931a76cd5" target="_blank">URL</a> Like has been featured in W, Talk, The Fader&nbsp;<a href="http://www.thefader.com/2014/05/07/interview-introducing-likes-almost-couture-cozy-gear" target="_blank">URL</a>, The Cut&nbsp;<a href="http://nymag.com/thecut/2015/08/meet-the-bed-stuy-shop-owner-with-chanel-roots.html" target="_blank">URL</a>, Racked&nbsp;<a href="http://ny.racked.com/2015/5/15/8610085/spring-outfit-ideas"target="_blank">URL</a>, Suited Magazine&nbsp;<a href="http://www.suitedmagazine.com/" target="_blank">URL</a>, and Riot of Perfume&nbsp;<a href="https://www.riotofperfume.com/" target="_blank" title="Riot of Perfume">URL</a>. The non-seasonal collections mix high-concept and reimagined, everyday basics.</p>
 		</article>
 		
 		<article class="previous-collections">
@@ -379,12 +519,12 @@ $mobile = true;
 		<article class="endmatter">
 			<div class="social">
 				
+				<a href="http://instagram.com/like.clothing/" class="svg-link instagram" title="Like Instagram" target="_blank">
 				<svg version="1.1" id="quotes" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 viewBox="0 0 614 225" style="enable-background:new 0 0 614 225;" xml:space="preserve">
 				<style type="text/css">
 					.st0_quotes{fill:none;stroke:#FFFFFF;stroke-width:5.8;stroke-miterlimit:14.51;}
 				</style>
-				<title>Artboard 1</title>
 				<g>
 					<g>
 						<path class="st0_quotes" d="M482.9,221.2h22.2c81.2,0,105.5-20,105.5-89.3V4.8H500.8v105h28.1c0.4,4.5,0.6,9,0.5,13.5
@@ -396,12 +536,35 @@ $mobile = true;
 				</g>
 				</svg>
 				
-				<a href="http://instagram.com/like.clothing/" target="_blank">Instagram: @like.clothing</a>
+				
+				<svg version="1.1" id="Layer_1_quotes_filled" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="0 0 614 225" style="enable-background:new 0 0 614 225;" xml:space="preserve">
+				<style type="text/css">
+					.st0_quotes_filled{fill:#FFFFFF;}
+				</style>
+				<g>
+					<path class="st0_quotes_filled" d="M185.3,22.1c-16.1,13.5-22.9,35.1-22.9,72v129h113.4V114.5h-27.9c-0.6-3.7-0.9-7.5-0.8-11.7
+						c0-26.4,7.2-34.5,30.7-34.5h16.4V3h-24.5C226.5,3,201.2,8.7,185.3,22.1z"/>
+					<path class="st0_quotes_filled" d="M1,94.1v129h114V114.5H86.8c-0.3-4.1-0.4-8-0.4-11.7c0-26.8,6.7-34.5,30.1-34.5h16.4V3h-24
+						C26.2,3,1,24.3,1,94.1z"/>
+					<path class="st0_quotes_filled" d="M499,3v108.6h28.2c0.3,4.1,0.4,8,0.4,11.7c0,26.8-6.9,34.5-30.7,34.5H481V223h24.1c43.2,0,68.5-5.7,84.4-19.1
+						c16.1-13.5,22.9-35.1,22.9-72V3H499z"/>
+					<path class="st0_quotes_filled" d="M337.7,111.6h28.4c0.6,3.7,0.9,7.5,0.8,11.7c0,26.4-7.2,34.5-30.7,34.5h-16.4V223h24
+						c43.5,0,68.9-5.7,84.9-19.1c16.2-13.5,23.1-35.1,23.1-72V3h-114V111.6z"/>
+				</g>
+				</svg>
+				<span class="svg-link-text">Instagram: @like.clothing</span>
+				</a>
+				
+				
 				
 			</div>
 			<div class="logo">
-				<a data-audio="DoorWood02.wav" data-module-init="audio-hover" href="mailto:info@like-clothing.biz" title="Like"><img src="assets/images/like.png" alt="Like Clothing" /></a>
-				<a href="mailto:info@like-clothing.biz">info@like-clothing.biz</a>
+				<a data-audio="DoorWood02.wav" data-module-init="audio-hover" href="mailto:info@like-clothing.biz" title="Like"><img src="assets/images/like.png" alt="Like Clothing" />
+				
+				<span class="svg-link-text">info@like-clothing.biz</span>
+				</a>
+				
 			</div>
 		</article>
 		
@@ -434,7 +597,7 @@ $mobile = true;
 	
 	<h3><span class="h3-sub">A</span> Fashion Sitcom</h3>
 	
-	<h2 class="collection-callout">A new collection and &#xFB01;lm<br>February, 2016</h2>
+	<h2 class="collection-callout">A new collection and film<br>Fall/Winter, 2017</h2>
 	
 	<form class="newsletter" data-module-init="form" action="https://like-clothing.us14.list-manage.com/subscribe/post" method="post">
 		<input type="email" class="bottom-input" placeholder="Email Address" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="">

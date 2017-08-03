@@ -168,9 +168,17 @@
 				
 				a {
 					@extend %small;
+					@include flexbox;
+					@include justify-content(space-between);
+					@include flex-direction(column);
 					
 					img {
 						width:100%;
+						margin-bottom:2vw;
+					}
+					
+					span {
+						line-height:1;
 					}
 				}
 			}
@@ -312,4 +320,11 @@
 			}
 		}
 	}
+}
+
+
+.youtube-container {
+	width:88vw;
+	max-width:1500px;
+	margin:0 auto;
 }

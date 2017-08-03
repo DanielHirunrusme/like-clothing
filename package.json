@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.5.4",
+    "barba.js": "0.0.10",
     "browserify": "^12.0.2",
     "browserify-shim": "^3.8.12",
     "glob": "^6.0.1",

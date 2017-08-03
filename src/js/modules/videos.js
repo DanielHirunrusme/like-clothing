@@ -123,7 +123,7 @@ var videos = module.exports = function( el ) {
 			$(vidContainer).find('video').each(function(){
 				if($(this).hasClass('active')){
 					var ind = $(this).index();
-					console.log('index ' + ind);
+					//console.log('index ' + ind);
 					//$(this).removeClass('active');
 					//$(vidContainer).find('video').eq(ind + 1).addClass('active');
 				}
@@ -140,14 +140,14 @@ var videos = module.exports = function( el ) {
 				if(vid.currentTime == 0) {
 					$(this)[0].currentTime = 0.1;
 					$(this)[0].pause();
-					console.log('looped');
+					//console.log('looped');
 					nextVideo($(this).parent());
 				}
 			});
 			
 			$('video').bind('loadeddata', function(e) {
 			  $(this).get(0).currentTime = 0.1;
-			  console.log($(this).attr('data-loaded', 'loaded'))
+			 // console.log($(this).attr('data-loaded', 'loaded'))
 			});
 			
 

@@ -195,7 +195,7 @@ var desktopScroll = module.exports = function( el ) {
 				$('#wrapper').scrollTop(0)
 			}
 			
-			console.log(st)
+			//console.log(st)
 			
 			controlScroll.scroll( st );
 		}
@@ -211,7 +211,7 @@ var desktopScroll = module.exports = function( el ) {
 		
 		function winMouseDown(event) {
 		
-				console.log(event.target)
+				//console.log(event.target)
 	
 				var _x = event.pageX;
 				var _y = event.pageY;

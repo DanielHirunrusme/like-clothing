@@ -39,6 +39,7 @@ module.exports = function( el ) {
 				scrollbars: 'custom',
 				fadeScrollbars: true,
 				bounce: false,
+				click:true, // open click event
 				mouseWheel: true,
 				scrollbarClass: 'scrollbar',
 				deceleration:0.002
@@ -84,9 +85,10 @@ module.exports = function( el ) {
 			var _x = event.originalEvent.touches[0].pageX;
 			var _y = event.originalEvent.touches[0].pageY;
 	
-			if( (_x >= $('input').position().left) && (_x <= $('input').position().left + $('input').outerWidth()) && (_y >= $('input').position().top) && (_y <= $('input').position().top + $('input').outerHeight()) )
+			if( (_x >= $('.bottom-input').position().left) && (_x <= $('.bottom-input').position().left + $('.bottom-input').outerWidth()) && (_y >= $('.bottom-input').position().top) && (_y <= $('.bottom-input').position().top + $('.bottom-input').outerHeight()) )
 			{
 				myScroll.scrollTo(0, 0);
+				controlScroll.scrollTo(0);
 				$('input.top-input').focus();
 				console.log('pressed');
 			}

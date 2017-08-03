@@ -1,6 +1,11 @@
 article {
 	width:88%;
 	margin:0 auto;
+	clear:left;
+	
+	.article-title {
+		margin:12vh auto;
+	}
 	
 	@include respond-to(mobile-portrait) {
 		width:90%;
@@ -9,7 +14,6 @@ article {
 
 .landscape-format {
 	article {
-		max-width:1200px;
+		max-width:1500px;
 	}
 }
-
