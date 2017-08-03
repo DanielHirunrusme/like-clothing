@@ -80,7 +80,7 @@ var controlScroll = module.exports = function( el ) {
 					$('.bottom-section').css('opacity', 1);
 					var volume = op.toFixed(2) * 100;
 					
-					
+		
 					audio.setVolume('intro', 100 - volume);
 					audio.setVolume('introAfter', 100 - volume);
 					audio.setVolume('credits', volume);

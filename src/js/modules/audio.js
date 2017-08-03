@@ -82,27 +82,35 @@ var audio = module.exports = function( el ) {
 				return false;
 			} 
 			
+      
+  
 			
 			
 			if(!settings.isMute) {
 				audioOn = false;
 				//settings.isMute = true;
 				
+        console.log('fade out')
+        
 				if(!settings.isMobile) {
 					fadeOut();
 				} else {
 					intro.pause();
 					introAfter.pause();
 					credits.pause();
+          settings.isMute = true;
 				}
 				
 			} else {
 				audioOn = true;
 				//settings.isMute = false;
 				
+         console.log('fade in')
+        
 				if(!settings.isMobile) {
 					fadeIn();
 				} else {
+          settings.isMute = false;
 					if(!introEnded) {
 						intro.play();
 					} else {
@@ -150,10 +158,6 @@ var audio = module.exports = function( el ) {
   				intro.pause();
   				introAfter.pause();
   				credits.pause();
-          
-  				intro.volume(0);
-  				introAfter.volume(0);
-  				credits.volume(0);
 				
   			}
     }
@@ -173,6 +177,7 @@ var audio = module.exports = function( el ) {
 			if(!settings.isMobile) {
 				fadeIn();
 			} else {
+        console.log('play')
 				if(!introEnded) {
 					intro.play();
 				} else {
@@ -190,13 +195,19 @@ var audio = module.exports = function( el ) {
 		
 		audio.setVolume = function(instance, _volume) {
 				if(!init) return false;
+        
+       
+        
 				//console.log('volume ' + _volume)
 				//if(!settings.isMute) clearInterval(fadeInterval);
 				switch(instance) {
 				case 'intro':
 					introVol = _volume;
 					
+          //console.log('set intro')
+          
 					if(!settings.isMute){
+            console.log(getVolPercent(_volume))
 					  intro.volume(getVolPercent(_volume)); 
             //console.log('set intro volume')
 					} 

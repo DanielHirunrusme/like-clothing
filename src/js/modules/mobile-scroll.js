@@ -13,14 +13,21 @@ module.exports = function( el ) {
 
 
 		//console.log(videos.getName())
-
+    
+    //this.scrollerWidth = Math.round(this.scroller.scrollWidth * this.scale);    
+    //this.scrollerHeight = Math.round(this.scroller.offsetHeight * this.scale);
 
 		function updatePosition () {
 		
 			//mobile loop
-			if(-this.y >= $el.find('#scroller').height() - $window.height()) {
+			if(-this.y >= settings.scroller.scrollerHeight - settings.scroller.wrapperHeight) {
+        console.log('loop')
 				this.scrollTo(0, 0);
 			}
+      
+      console.log(-this.y);
+      
+      console.log(settings.scroller.scrollerHeight - settings.scroller.wrapperHeight)
 			
 			var st = -this.y;
 			
